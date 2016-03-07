@@ -8,6 +8,9 @@ public class Tim : MonoBehaviour {
 	GameObject pratBubbla;
 	Dialog dialog = new Dialog();
 
+	//Animations
+	public Animation animScared;
+
 	public ArrayList TimDialogHappy;
 	public ArrayList TimDialogScared;
 	public ArrayList TimDialogAngry;
@@ -29,6 +32,11 @@ public class Tim : MonoBehaviour {
 	string dialoger;
 	bool speak = false;
 
+	AudioSource scream;
+	AudioSource angry;
+	AudioSource calm;
+	AudioSource[] aSources;
+
 	public string gameState = "Start";
 	public int mood = 0;
 
@@ -43,7 +51,16 @@ public class Tim : MonoBehaviour {
 
 		style.fontSize = 20;
 
+		animScared = gameObject.GetComponent<Animation> ();
+
 		moodBar = new GameObject[11];
+
+		aSources = new AudioSource[3];
+		aSources = gameObject.GetComponents<AudioSource> ();
+
+		scream = aSources [0];
+		angry = aSources [1];
+		calm = aSources [2];
 
 		pinne = GameObject.FindWithTag("Pinne");
 		Berries = GameObject.FindWithTag("Bär");
@@ -186,16 +203,30 @@ public class Tim : MonoBehaviour {
 		
 		if(mood <= 3){
 			dialoger = TimDialogHappy [Random.Range(0,1)].ToString ();
+			//playAudio calm
+			calm.Play ();
+			if(!animScared.isPlaying){
+				animScared.Play("animCalm");
+			}
 		}
 
 		if(mood >= 4 && mood <= 7){
 			dialoger = TimDialogScared [Random.Range(0,3)].ToString ();
-
+			//playAudio scared
+			if (!animScared.isPlaying) {
+				animScared.Play ("animScared");
+			}
+			scream.Play ();
 		}
 
 		if(mood >= 8){
 			dialoger = TimDialogAngry [Random.Range(0,2)].ToString ();
-		
+			//playAudio angry
+
+			angry.Play ();
+			if (!animScared.isPlaying) {
+				animScared.Play ("animAngry");
+			}
 		}
 	}
 
@@ -228,6 +259,8 @@ public class Tim : MonoBehaviour {
 		TimTalk ();
 		StartCoroutine (timeToSpeak(4f));
 		whisper = false;
+
+		//playAudio
 	}
 
 	public void MoodChanger(){

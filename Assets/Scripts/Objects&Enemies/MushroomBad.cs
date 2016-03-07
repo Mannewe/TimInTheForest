@@ -44,6 +44,7 @@ public class MushroomBad : MonoBehaviour {
 		if(state == "Mushroom1"){
 			if(timScript.mood < 5){
 				print ("Tim plockar de båda svamparna och lägger dem i sin ryggsäck. ");
+				timScript.animScared.Play ("shrubbery");
 				StartCoroutine (waitForAnim(animationTime));
 				timScript.inventory.Add ("MushroomBad");
 				noActionTaken = false;
@@ -52,6 +53,7 @@ public class MushroomBad : MonoBehaviour {
 
 			if (timScript.mood >= 5) {
 				print ("Tim trampar ner svamparna.");
+				timScript.animScared.Play ("stickdestroy");
 				StartCoroutine (waitForAnim(animationTime));
 				noActionTaken = false;
 				timScript.gameState = "Frog3";

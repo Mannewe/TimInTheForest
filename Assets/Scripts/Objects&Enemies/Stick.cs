@@ -47,6 +47,7 @@ public class Stick : MonoBehaviour {
 			if(timScript.mood < 5){
 				print ("Tim plockar upp en pinne som han hittar på marken.");
 				StartCoroutine (waitForAnim(animationTime));
+				timScript.animScared.Play ("shrubbery");
 				timScript.inventory.Add ("Stick");
 				noActionTaken = false;
 				timScript.gameState = "Mushroom1";
@@ -55,6 +56,7 @@ public class Stick : MonoBehaviour {
 			if (timScript.mood >= 5) {
 				print ("Tim plockar upp en pinne som han hittar på marken.");
 				StartCoroutine (waitForAnim(animationTime));
+				timScript.animScared.Play ("shrubbery");
 				timScript.inventory.Add ("Stick");
 				noActionTaken = false;
 				timScript.gameState = "Mushroom1";
@@ -64,6 +66,7 @@ public class Stick : MonoBehaviour {
 		if(state == "Stick2"){
 			if(timScript.mood < 5){
 				print ("Tim plockar upp pinnen");
+				timScript.animScared.Play ("shrubbery");
 				StartCoroutine (waitForAnim(animationTime));
 				timScript.inventory.Add ("Stick");
 				noActionTaken = false;
@@ -72,6 +75,7 @@ public class Stick : MonoBehaviour {
 
 			if (timScript.mood >= 5) {
 				print ("Tim förstör pinnen i sin ilska.");
+				timScript.animScared.Play ("stickdestroy");
 				StartCoroutine (waitForAnim(animationTime));
 				noActionTaken = false;
 				timScript.gameState = "Frog2";

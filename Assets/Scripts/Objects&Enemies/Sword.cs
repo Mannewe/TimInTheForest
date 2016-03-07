@@ -47,6 +47,7 @@ public class Sword : MonoBehaviour {
 			if(timScript.mood < 5){
 				print ("Tim plockar upp svärdet som grodan tappat. Tim vandrar vidare och stöter på skogens drakorm.");
 				StartCoroutine (waitForAnim(animationTime));
+				timScript.animScared.Play ("shrubbery");
 				timScript.inventory.Add ("Sword");
 				noActionTaken = false;
 				timScript.gameState = "Dragon2";
@@ -55,6 +56,7 @@ public class Sword : MonoBehaviour {
 			if (timScript.mood >= 5) {
 				print ("Tim plockar upp svärdet som grodan tappat. Tim vandrar vidare och stöter på skogens drakorm. ");
 				StartCoroutine (waitForAnim(animationTime));
+				timScript.animScared.Play ("shrubbery");
 				timScript.inventory.Add ("Sword");
 				noActionTaken = false;
 				timScript.gameState = "Dragon2";
@@ -64,6 +66,7 @@ public class Sword : MonoBehaviour {
 		if(state == "Sword2"){
 			if(timScript.mood < 5){
 				print ("Tim plockar upp svärdet som grodan tappat. Tim vandrar vidare och stöter på skogens drakorm.");
+				timScript.animScared.Play ("shrubbery");
 				StartCoroutine (waitForAnim(animationTime));
 				timScript.inventory.Add ("Sword");
 				noActionTaken = false;
@@ -72,6 +75,7 @@ public class Sword : MonoBehaviour {
 
 			if (timScript.mood >= 5) {
 				print ("Tim plockar upp svärdet som grodan tappat. Tim vandrar vidare och stöter på skogens drakorm.");
+				timScript.animScared.Play ("shrubbery");
 				StartCoroutine (waitForAnim(animationTime));
 				timScript.inventory.Add ("Sword");
 				noActionTaken = false;

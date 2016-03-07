@@ -45,6 +45,7 @@ public class Shrubbery : MonoBehaviour {
 		if(state == "Berries"){
 			if(timScript.mood < 5){
 				print ("Tim collects some of the berries");
+				timScript.animScared.Play ("shrubbery");
 				StartCoroutine (waitForAnim(animationTime));
 				timScript.inventory.Add ("berries");
 				noActionTaken = false;
@@ -54,6 +55,7 @@ public class Shrubbery : MonoBehaviour {
 			if (timScript.mood >= 5) {
 				print ("Tim smashes the berries because of angry");
 				StartCoroutine (waitForAnim(animationTime));
+				timScript.animScared.Play ("stickdestroy");
 				noActionTaken = false;
 				timScript.gameState = "Stones1";
 			}

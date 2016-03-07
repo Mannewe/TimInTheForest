@@ -172,6 +172,6 @@ public class Spawner : MonoBehaviour {
 //			GameObject King1 = (GameObject)Instantiate (enemiesObjects [0]);
 //		}
 
-		StartCoroutine (WaitForSpawn(Random.Range(10f,15f)));
+		StartCoroutine (WaitForSpawn(Random.Range(20f,35f)));
 	}
 }

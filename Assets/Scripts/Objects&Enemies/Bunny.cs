@@ -8,6 +8,8 @@ public class Bunny : MonoBehaviour {
 	GameObject scroller1;
 	GameObject scroller2;
 	GameObject tim;
+	GameObject berries;
+	Animation toss;
 	Tim timScript;
 	bool noActionTaken = true;
 
@@ -25,6 +27,8 @@ public class Bunny : MonoBehaviour {
 		scroller2 = GameObject.FindWithTag ("scroller3");
 		tim = GameObject.FindWithTag ("tim");
 		timScript = tim.GetComponent<Tim> ();
+		berries = GameObject.FindWithTag ("berrytoss");
+		toss = berries.GetComponent<Animation> ();
 
 	}
 
@@ -48,6 +52,7 @@ public class Bunny : MonoBehaviour {
 				print ("Tim ger sina bär till kaninen, som väljer att slå följe med Tim.");
 				StartCoroutine (waitForAnim(animationTime));
 				StartCoroutine (waitForBunny(animationTime - 0.1f));
+				toss.Play ("berryThrow");
 				timScript.inventory.Remove ("Berries");
 				noActionTaken = false;
 				timScript.gameState = "Raven1";
@@ -72,6 +77,7 @@ public class Bunny : MonoBehaviour {
 			if (timScript.mood >= 5) {
 				print ("Tim kastar en av sina stenar på kaninen, som dör. Tim plockar upp den döda kaninen och lägger den i sin ryggsäck.");
 				StartCoroutine (waitForAnim(animationTime));
+				timScript.inventory.Add ("Bunny");
 				timScript.inventory.Remove ("Stone1");
 				noActionTaken = false;
 				timScript.gameState = "Raven2";
