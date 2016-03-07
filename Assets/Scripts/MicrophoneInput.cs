@@ -23,7 +23,7 @@ public class MicrophoneInput : MonoBehaviour {
 	
 	void Update(){
 		loudness = GetAveragedVolume() * sensitivity;
-		print (loudness);
+		//print (loudness);
 
 		if (talkDelayer == true) {
 			if (loudness > 3 && loudness <= 5) {
@@ -33,7 +33,7 @@ public class MicrophoneInput : MonoBehaviour {
 				StartCoroutine (talkDelay(5f));
 			}
 
-			if (loudness > 4) {
+			if (loudness > 5) {
 				StartCoroutine (YellDelay(0.3f));
 				//timscript.Yell (true);
 				talkDelayer = false;

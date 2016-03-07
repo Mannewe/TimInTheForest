@@ -12,12 +12,24 @@ public class Tim : MonoBehaviour {
 	public ArrayList TimDialogScared;
 	public ArrayList TimDialogAngry;
 
+	GameObject pinne;
+	GameObject Berries;
+	GameObject Sword;
+	GameObject Bunny;
+	GameObject MushroomBad;
+	GameObject MushroomGood;
+	GameObject Stone1;
+	GameObject Stone2;
+	GameObject FrogDead;
+	GameObject Flower;
+	public GameObject bunnyFollower;
+
 	GUIStyle style = new GUIStyle();
 
 	string dialoger;
 	bool speak = false;
 
-	public string gameState = "start";
+	public string gameState = "Start";
 	public int mood = 0;
 
 	//inventory as strings
@@ -25,11 +37,33 @@ public class Tim : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		//StartCoroutine (triggerFirstEvent(2f));
+
 		getDialog ();
 
-		style.fontSize = 30;
+		style.fontSize = 20;
 
 		moodBar = new GameObject[11];
+
+		pinne = GameObject.FindWithTag("Pinne");
+		Berries = GameObject.FindWithTag("Bär");
+		Sword = GameObject.FindWithTag("Svärd");
+		Bunny = GameObject.FindWithTag("Kanin");
+		MushroomBad = GameObject.FindWithTag("Flugsvamp");
+		MushroomGood = GameObject.FindWithTag("Kantarell");
+		Stone1 = GameObject.FindWithTag("Stone1");
+		Stone2 = GameObject.FindWithTag("Stone2");
+		FrogDead = GameObject.FindWithTag("FrogDead");
+		Flower = GameObject.FindWithTag("Flower");
+		bunnyFollower = GameObject.FindWithTag ("BunnyFollower");
+
+		pinne.SetActive (false);
+		Berries.SetActive (false);
+		Sword.SetActive (false);
+		Bunny.SetActive (false);
+		MushroomBad.SetActive (false);
+		MushroomGood.SetActive (false);
+		bunnyFollower.SetActive (false);
 
 		moodBar [0] = GameObject.FindWithTag ("0");
 		moodBar [1] = GameObject.FindWithTag ("1");
@@ -86,12 +120,64 @@ public class Tim : MonoBehaviour {
 	//checks inventory to determine gameState
 	void checkInventory(){
 
-		if(inventory.Contains("Rock") && !inventory.Contains("Flower")){
-			//gameState = "rock";
+		if(inventory.Contains("Stone1")){
+			Stone1.SetActive (true);
+		}else {
+			Stone1.SetActive (false);
 		}
 
-		if(inventory.Contains("Rock") && inventory.Contains("Flower")){
-			//gameState = "rock,flower";
+		if(inventory.Contains("Stone2")){
+			Stone2.SetActive (true);
+		}else {
+			Stone2.SetActive (false);
+		}
+
+		if(inventory.Contains("FrogDead")){
+			FrogDead.SetActive (true);
+		}else {
+			FrogDead.SetActive (false);
+		}
+
+		if (inventory.Contains ("Flower")) {
+			Flower.SetActive (true);
+		} else {
+			Flower.SetActive (false);
+		}
+
+		if (inventory.Contains ("berries")) {
+			Berries.SetActive (true);
+		} else {
+			Berries.SetActive (false);
+		}
+
+		if(inventory.Contains("Sword")){
+			Sword.SetActive (true);
+		}else {
+			Sword.SetActive (false);
+		}
+
+		if(inventory.Contains("Bunny")){
+			Bunny.SetActive (true);
+		}else {
+			Bunny.SetActive (false);
+		}
+
+		if(inventory.Contains("Stick")){
+			pinne.SetActive (true);
+		}else {
+			pinne.SetActive (false);
+		}
+
+		if(inventory.Contains("MushroomBad")){
+			MushroomBad.SetActive (true);
+		}else {
+			MushroomBad.SetActive (false);
+		}
+
+		if(inventory.Contains("MushroomGood")){
+			MushroomGood.SetActive (true);
+		}else {
+			MushroomGood.SetActive (false);
 		}
 			
 	}
@@ -99,16 +185,16 @@ public class Tim : MonoBehaviour {
 	public void TimTalk(){
 		
 		if(mood <= 3){
-			dialoger = TimDialogHappy [0].ToString ();
+			dialoger = TimDialogHappy [Random.Range(0,1)].ToString ();
 		}
 
 		if(mood >= 4 && mood <= 7){
-				dialoger = TimDialogScared [0].ToString ();
+			dialoger = TimDialogScared [Random.Range(0,3)].ToString ();
 
 		}
 
 		if(mood >= 8){
-				dialoger = TimDialogAngry [0].ToString ();
+			dialoger = TimDialogAngry [Random.Range(0,2)].ToString ();
 		
 		}
 	}
@@ -215,7 +301,7 @@ public class Tim : MonoBehaviour {
 
 	void OnGUI(){
 		if(speak == true){
-		GUI.Label(new Rect(330,200,200,190), dialoger , style);
+		GUI.Label(new Rect(300,200,200,190), dialoger , style);
 		}
 	}
 
@@ -239,5 +325,10 @@ public class Tim : MonoBehaviour {
 		yield return new WaitForSeconds (waitTime);
 		pratBubbla.SetActive (false);
 		speak = false;
+	}
+
+	IEnumerator triggerFirstEvent(float waitTime){
+		yield return new WaitForSeconds (waitTime);
+		gameState = "Berries";
 	}
 }

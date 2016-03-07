@@ -48,11 +48,16 @@
      <Compile Include="Assets\Scripts\Dialog.cs" />
      <Compile Include="Assets\Scripts\MicrophoneInput.cs" />
      <Compile Include="Assets\Scripts\Objects&amp;Enemies\Bird.cs" />
+     <Compile Include="Assets\Scripts\Objects&amp;Enemies\Blomma.cs" />
+     <Compile Include="Assets\Scripts\Objects&amp;Enemies\Bunny.cs" />
      <Compile Include="Assets\Scripts\Objects&amp;Enemies\FrogKing.cs" />
      <Compile Include="Assets\Scripts\Objects&amp;Enemies\MushroomBad.cs" />
+     <Compile Include="Assets\Scripts\Objects&amp;Enemies\MushroomGood.cs" />
      <Compile Include="Assets\Scripts\Objects&amp;Enemies\Rock.cs" />
      <Compile Include="Assets\Scripts\Objects&amp;Enemies\Shrubbery.cs" />
      <Compile Include="Assets\Scripts\Objects&amp;Enemies\Snake.cs" />
+     <Compile Include="Assets\Scripts\Objects&amp;Enemies\Stick.cs" />
+     <Compile Include="Assets\Scripts\Objects&amp;Enemies\Sword.cs" />
      <Compile Include="Assets\Scripts\ScrollingBackground.cs" />
      <Compile Include="Assets\Scripts\Spawner.cs" />
      <Compile Include="Assets\Scripts\Tim.cs" />

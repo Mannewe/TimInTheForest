@@ -5,6 +5,8 @@ public class MushroomBad : MonoBehaviour {
 	private string state = "";
 	Animation spawn;
 	GameObject scroller;
+	GameObject scroller1;
+	GameObject scroller2;
 	GameObject tim;
 	Tim timScript;
 	bool noActionTaken = true;
@@ -17,7 +19,9 @@ public class MushroomBad : MonoBehaviour {
 	void Start () {
 		spawn = gameObject.GetComponent<Animation> ();
 		spawn.Play ("monsterspawn");
-		scroller = GameObject.FindWithTag ("scroller");
+		scroller = GameObject.FindWithTag ("scroller1");
+		scroller1 = GameObject.FindWithTag ("scroller2");
+		scroller2 = GameObject.FindWithTag ("scroller3");
 		tim = GameObject.FindWithTag ("tim");
 		timScript = tim.GetComponent<Tim> ();
 	}
@@ -28,6 +32,8 @@ public class MushroomBad : MonoBehaviour {
 
 		if(gameObject.transform.position.x <= endPos){
 			scroller.GetComponent<ScrollingBackground> ().stopScroll ();
+			scroller1.GetComponent<ScrollingBackground> ().stopScroll ();
+			scroller2.GetComponent<ScrollingBackground> ().stopScroll ();
 			CheckGameState ();
 
 			StartCoroutine (waitForAction(timeUntilAction));
@@ -35,17 +41,20 @@ public class MushroomBad : MonoBehaviour {
 	}
 
 	void Act(){
-		if(state == "rock,flower"){
+		if(state == "Mushroom1"){
 			if(timScript.mood < 5){
-				print ("gets flower and is very happy");
+				print ("Tim plockar de båda svamparna och lägger dem i sin ryggsäck. ");
 				StartCoroutine (waitForAnim(animationTime));
+				timScript.inventory.Add ("MushroomBad");
 				noActionTaken = false;
+				timScript.gameState = "Frog4";
 			}
 
 			if (timScript.mood >= 5) {
-				print ("gets a rock in his head");
+				print ("Tim trampar ner svamparna.");
 				StartCoroutine (waitForAnim(animationTime));
 				noActionTaken = false;
+				timScript.gameState = "Frog3";
 			}
 		}
 
@@ -64,7 +73,9 @@ public class MushroomBad : MonoBehaviour {
 	IEnumerator waitForAnim(float waitTime){
 		yield return new WaitForSeconds (waitTime);
 		print ("Animation Done");
-		scroller.GetComponent<ScrollingBackground> ().startScroll ();;
+		scroller.GetComponent<ScrollingBackground> ().startScroll ();
+		scroller1.GetComponent<ScrollingBackground> ().startScroll ();
+		scroller2.GetComponent<ScrollingBackground> ().startScroll ();
 		Destroy ();
 
 	}

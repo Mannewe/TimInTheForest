@@ -5,6 +5,8 @@ public class Shrubbery : MonoBehaviour {
 	private string state = "";
 	Animation spawn;
 	GameObject scroller;
+	GameObject scroller1;
+	GameObject scroller2;
 	GameObject tim;
 	Tim timScript;
 	bool noActionTaken = true;
@@ -18,7 +20,9 @@ public class Shrubbery : MonoBehaviour {
 	void Start () {
 		spawn = gameObject.GetComponent<Animation> ();
 		spawn.Play ("monsterspawn");
-		scroller = GameObject.FindWithTag ("scroller");
+		scroller = GameObject.FindWithTag ("scroller1");
+		scroller1 = GameObject.FindWithTag ("scroller2");
+		scroller2 = GameObject.FindWithTag ("scroller3");
 		tim = GameObject.FindWithTag ("tim");
 		timScript = tim.GetComponent<Tim> ();
 	}
@@ -29,6 +33,8 @@ public class Shrubbery : MonoBehaviour {
 
 		if(gameObject.transform.position.x <= endPos){
 			scroller.GetComponent<ScrollingBackground> ().stopScroll ();
+			scroller1.GetComponent<ScrollingBackground> ().stopScroll ();
+			scroller2.GetComponent<ScrollingBackground> ().stopScroll ();
 			CheckGameState ();
 
 			StartCoroutine (waitForAction(timeUntilAction));
@@ -36,7 +42,7 @@ public class Shrubbery : MonoBehaviour {
 	}
 
 	void Act(){
-		if(state == "start"){
+		if(state == "Berries"){
 			if(timScript.mood < 5){
 				print ("Tim collects some of the berries");
 				StartCoroutine (waitForAnim(animationTime));
@@ -49,7 +55,7 @@ public class Shrubbery : MonoBehaviour {
 				print ("Tim smashes the berries because of angry");
 				StartCoroutine (waitForAnim(animationTime));
 				noActionTaken = false;
-				timScript.gameState = "Stones";
+				timScript.gameState = "Stones1";
 			}
 		}
 
@@ -68,7 +74,9 @@ public class Shrubbery : MonoBehaviour {
 	IEnumerator waitForAnim(float waitTime){
 		yield return new WaitForSeconds (waitTime);
 		print ("Animation Done");
-		scroller.GetComponent<ScrollingBackground> ().startScroll ();;
+		scroller.GetComponent<ScrollingBackground> ().startScroll ();
+		scroller1.GetComponent<ScrollingBackground> ().startScroll ();
+		scroller2.GetComponent<ScrollingBackground> ().startScroll ();
 		Destroy ();
 
 	}

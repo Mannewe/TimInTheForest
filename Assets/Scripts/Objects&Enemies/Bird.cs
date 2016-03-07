@@ -5,6 +5,8 @@ public class Bird : MonoBehaviour {
 	private string state = "";
 	Animation spawn;
 	GameObject scroller;
+	GameObject scroller1;
+	GameObject scroller2;
 	GameObject tim;
 	Tim timScript;
 	bool noActionTaken = true;
@@ -17,7 +19,9 @@ public class Bird : MonoBehaviour {
 	void Start () {
 		spawn = gameObject.GetComponent<Animation> ();
 		spawn.Play ("monsterspawn");
-		scroller = GameObject.FindWithTag ("scroller");
+		scroller = GameObject.FindWithTag ("scroller1");
+		scroller1 = GameObject.FindWithTag ("scroller2");
+		scroller2 = GameObject.FindWithTag ("scroller3");
 		tim = GameObject.FindWithTag ("tim");
 		timScript = tim.GetComponent<Tim> ();
 	}
@@ -28,6 +32,8 @@ public class Bird : MonoBehaviour {
 
 		if(gameObject.transform.position.x <= endPos){
 			scroller.GetComponent<ScrollingBackground> ().stopScroll ();
+			scroller1.GetComponent<ScrollingBackground> ().stopScroll ();
+			scroller2.GetComponent<ScrollingBackground> ().stopScroll ();
 			CheckGameState ();
 
 			StartCoroutine (waitForAction(timeUntilAction));
@@ -35,17 +41,39 @@ public class Bird : MonoBehaviour {
 	}
 
 	void Act(){
-		if(state == "rock,flower"){
+		if(state == "Raven1"){
 			if(timScript.mood < 5){
-				print ("gets flower and is very happy");
+				print ("Tim och kaninen möter en korp. Korpen säger: -Skogens kung är ensam. Korpen flyger iväg");
 				StartCoroutine (waitForAnim(animationTime));
 				noActionTaken = false;
+				timScript.gameState = "Stick2";
 			}
 
 			if (timScript.mood >= 5) {
-				print ("gets a rock in his head");
+				print ("Tim och kaninen möter en korp. Korpen säger: -Skogens kung är ensam. Korpen flyger iväg");
 				StartCoroutine (waitForAnim(animationTime));
 				noActionTaken = false;
+				timScript.gameState = "Stick2";
+			}
+		}
+
+		if(state == "Raven2"){
+			if(timScript.mood < 5){
+				print ("Tim möter en korp. Korpen säger: - Ormen älskar att äta grodlår. Tim kastar sin sista sten på korpen, som flyger iväg. I sin brådska tappar korpen sitt svärd på marken. Tim plockar upp svärdet.");
+				StartCoroutine (waitForAnim(animationTime));
+				noActionTaken = false;
+				timScript.inventory.Remove ("Stone2");
+				timScript.inventory.Add ("Sword");
+				timScript.gameState = "Sword3";
+			}
+
+			if (timScript.mood >= 5) {
+				print ("Tim möter en korp. Korpen säger: - Ormen älskar att äta grodlår. Tim kastar sin sista sten på korpen, som flyger iväg. I sin brådska tappar korpen sitt svärd på marken. Tim plockar upp svärdet.");
+				StartCoroutine (waitForAnim(animationTime));
+				noActionTaken = false;
+				timScript.inventory.Remove ("Stone2");
+				timScript.inventory.Add ("Sword");
+				timScript.gameState = "Sword3";
 			}
 		}
 
@@ -64,7 +92,9 @@ public class Bird : MonoBehaviour {
 	IEnumerator waitForAnim(float waitTime){
 		yield return new WaitForSeconds (waitTime);
 		print ("Animation Done");
-		scroller.GetComponent<ScrollingBackground> ().startScroll ();;
+		scroller.GetComponent<ScrollingBackground> ().startScroll ();
+		scroller1.GetComponent<ScrollingBackground> ().startScroll ();
+		scroller2.GetComponent<ScrollingBackground> ().startScroll ();
 		Destroy ();
 
 	}
