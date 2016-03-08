@@ -22,6 +22,7 @@ public class MicrophoneInput : MonoBehaviour {
 	}
 	
 	void Update(){
+		if(timscript.started == true){
 		loudness = GetAveragedVolume() * sensitivity;
 		//print (loudness);
 
@@ -40,7 +41,7 @@ public class MicrophoneInput : MonoBehaviour {
 				StartCoroutine (talkDelay(5f));
 			}
 		}
-
+		}
 	}
 	
 	float GetAveragedVolume()

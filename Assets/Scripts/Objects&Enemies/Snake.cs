@@ -8,6 +8,7 @@ public class Snake : MonoBehaviour {
 	GameObject scroller1;
 	GameObject scroller2;
 	GameObject tim;
+	GameObject sword;
 	Tim timScript;
 	bool noActionTaken = true;
 
@@ -22,6 +23,7 @@ public class Snake : MonoBehaviour {
 		scroller = GameObject.FindWithTag ("scroller1");
 		scroller1 = GameObject.FindWithTag ("scroller2");
 		scroller2 = GameObject.FindWithTag ("scroller3");
+		sword = GameObject.FindWithTag ("animSword");
 		tim = GameObject.FindWithTag ("tim");
 		timScript = tim.GetComponent<Tim> ();
 	}
@@ -53,6 +55,7 @@ public class Snake : MonoBehaviour {
 
 			if (timScript.mood >= 5) {
 				print ("Tim gör ett utfall med sin pinne mot drakormen. Pinnen förstörs och Tim blir uppäten av monstret. Tim är död.");
+				timScript.animScared.Play ("Killstuff");
 				StartCoroutine (waitForAnim(animationTime));
 				timScript.inventory.Remove ("Stick");
 				noActionTaken = false;
@@ -70,6 +73,7 @@ public class Snake : MonoBehaviour {
 
 			if (timScript.mood >= 5) {
 				print ("Tim dräper ormen med ett kraftfullt slag. Med drakormens död har Tim besegrat ondskan som terroriserat skogen, men är dömd att vara vilse i all oändlighet. \n");
+				timScript.animScared.Play ("Killstuff");
 				StartCoroutine (waitForAnim(animationTime));
 				noActionTaken = false;
 				timScript.gameState = "Lost1";
@@ -88,6 +92,7 @@ public class Snake : MonoBehaviour {
 			if (timScript.mood >= 5) {
 				print ("Tim anfaller ormen med sina bara händer. Detta visar sig vara en dålig ide, då ormen äter upp Tim i ett nafs.");
 				StartCoroutine (waitForAnim(animationTime));
+				timScript.animScared.Play ("Killstuff");
 				noActionTaken = false;
 				timScript.gameState = "Death3";
 			}
@@ -104,6 +109,7 @@ public class Snake : MonoBehaviour {
 			if (timScript.mood >= 5) {
 				print ("Tim dräper ormen med ett kraftfullt slag. Med drakormens död har Tim besegrat ondskan som terroriserat skogen, men är dömd att vara vilse i all oändlighet. ");
 				StartCoroutine (waitForAnim(animationTime));
+				timScript.animScared.Play ("Killstuff");
 				noActionTaken = false;
 				timScript.gameState = "Lost2";
 			}
@@ -121,6 +127,7 @@ public class Snake : MonoBehaviour {
 			if (timScript.mood >= 5) {
 				print ("Tim gör ett fasansfullt utfall mot drakormen, och dräper den med ett stort leende på läpparna. Tim har nu besegrat skogens makthavare, och är nu själv skogens herre och kung.");
 				StartCoroutine (waitForAnim(animationTime));
+				timScript.animScared.Play ("Killstuff");
 				noActionTaken = false;
 				timScript.gameState = "King1";
 			}

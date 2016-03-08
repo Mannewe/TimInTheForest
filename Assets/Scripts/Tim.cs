@@ -7,6 +7,7 @@ public class Tim : MonoBehaviour {
 	GameObject[] moodBar;
 	GameObject pratBubbla;
 	Dialog dialog = new Dialog();
+	public bool started = false;
 
 	//Animations
 	public Animation animScared;
@@ -25,11 +26,14 @@ public class Tim : MonoBehaviour {
 	GameObject Stone2;
 	GameObject FrogDead;
 	GameObject Flower;
+	GameObject startbox;
 	public GameObject bunnyFollower;
 
 	GUIStyle style = new GUIStyle();
+	GUIStyle style2 = new GUIStyle();
 
 	string dialoger;
+	string startText = "Tim is lost in the forest, affect his mood by \n screaming or whispering to him and he will do the rest \n \n Press S to start";
 	bool speak = false;
 
 	AudioSource scream;
@@ -45,11 +49,10 @@ public class Tim : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		//StartCoroutine (triggerFirstEvent(2f));
-
 		getDialog ();
 
 		style.fontSize = 20;
+		style2.fontSize = 40;
 
 		animScared = gameObject.GetComponent<Animation> ();
 
@@ -73,6 +76,7 @@ public class Tim : MonoBehaviour {
 		FrogDead = GameObject.FindWithTag("FrogDead");
 		Flower = GameObject.FindWithTag("Flower");
 		bunnyFollower = GameObject.FindWithTag ("BunnyFollower");
+		startbox = GameObject.FindWithTag ("Startbox");
 
 		pinne.SetActive (false);
 		Berries.SetActive (false);
@@ -81,6 +85,10 @@ public class Tim : MonoBehaviour {
 		MushroomBad.SetActive (false);
 		MushroomGood.SetActive (false);
 		bunnyFollower.SetActive (false);
+		Stone1.SetActive (false);
+		Stone2.SetActive (false);
+		FrogDead.SetActive (false);
+		Flower.SetActive (false);
 
 		moodBar [0] = GameObject.FindWithTag ("0");
 		moodBar [1] = GameObject.FindWithTag ("1");
@@ -104,7 +112,8 @@ public class Tim : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
+		startScreen ();
+		if(started == true){
 		print (dialoger);
 		//TimTalk ();
 		for(int i = 0; i < inventory.Count; i++){
@@ -131,7 +140,7 @@ public class Tim : MonoBehaviour {
 //		}
 
 		print ("gamestate = " + gameState);
-
+		}
 	}
 
 	//checks inventory to determine gameState
@@ -336,6 +345,9 @@ public class Tim : MonoBehaviour {
 		if(speak == true){
 		GUI.Label(new Rect(300,200,200,190), dialoger , style);
 		}
+		if(gameState == "Start"){
+			GUI.Box (new Rect(Screen.width/2 - 450,100,200,200), startText, style2);
+		}
 	}
 
 	void getDialog(){
@@ -354,14 +366,18 @@ public class Tim : MonoBehaviour {
 		TimDialogAngry.Add ("I really want to punch something."); // angry
 	}
 
+	void startScreen(){
+		if(Input.GetKeyDown("s")){
+			startbox.SetActive (false);
+			started = true;
+			gameState = "Berries";
+
+		}
+	}
+
 	IEnumerator timeToSpeak(float waitTime){
 		yield return new WaitForSeconds (waitTime);
 		pratBubbla.SetActive (false);
 		speak = false;
-	}
-
-	IEnumerator triggerFirstEvent(float waitTime){
-		yield return new WaitForSeconds (waitTime);
-		gameState = "Berries";
 	}
 }

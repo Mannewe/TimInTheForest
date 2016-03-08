@@ -8,6 +8,7 @@ public class FrogKing : MonoBehaviour {
 	GameObject scroller1;
 	GameObject scroller2;
 	GameObject tim;
+	GameObject sword;
 
 	Tim timScript;
 	bool noActionTaken = true;
@@ -23,6 +24,7 @@ public class FrogKing : MonoBehaviour {
 		scroller = GameObject.FindWithTag ("scroller1");
 		scroller1 = GameObject.FindWithTag ("scroller2");
 		scroller2 = GameObject.FindWithTag ("scroller3");
+		sword = GameObject.FindWithTag ("animSword");
 		tim = GameObject.FindWithTag ("tim");
 		timScript = tim.GetComponent<Tim> ();
 	}
@@ -55,6 +57,7 @@ public class FrogKing : MonoBehaviour {
 			if (timScript.mood >= 5) {
 				print ("Tim slår grodan med sin pinne. Grodan flyr från Tims vrede, och tappar sitt svärd.");
 				StartCoroutine (waitForAnim(animationTime));
+				timScript.animScared.Play ("Killstuff");
 				timScript.inventory.Remove ("Stick");
 				noActionTaken = false;
 				timScript.gameState = "Sword1";
@@ -126,6 +129,7 @@ public class FrogKing : MonoBehaviour {
 			if (timScript.mood >= 5) {
 				print ("Tim dräper grodan med sitt svärd. Tim tar grodans ledbrutna kropp och lägger den i sin ryggsäck.");
 				StartCoroutine (waitForAnim(animationTime));
+				timScript.animScared.Play ("Killstuff");
 				timScript.inventory.Remove ("Sword");
 				timScript.inventory.Add ("FrogDead");
 				noActionTaken = false;
