@@ -43,45 +43,46 @@ public class Stick : MonoBehaviour {
 	}
 
 	void Act(){
-		if(state == "Stick1"){
-			if(timScript.mood < 5){
-				print ("Tim plockar upp en pinne som han hittar på marken.");
-				StartCoroutine (waitForAnim(animationTime));
-				timScript.animScared.Play ("shrubbery");
-				timScript.inventory.Add ("Stick");
-				noActionTaken = false;
-				timScript.gameState = "Mushroom1";
+		if (timScript.moodChanged == true) {
+			if (state == "Stick1") {
+				if (timScript.mood < 5) {
+					print ("Tim plockar upp en pinne som han hittar på marken.");
+					StartCoroutine (waitForAnim (animationTime));
+					timScript.animScared.Play ("shrubbery");
+					timScript.inventory.Add ("Stick");
+					noActionTaken = false;
+					timScript.gameState = "Mushroom1";
+				}
+
+				if (timScript.mood >= 5) {
+					print ("Tim plockar upp en pinne som han hittar på marken.");
+					StartCoroutine (waitForAnim (animationTime));
+					timScript.animScared.Play ("shrubbery");
+					timScript.inventory.Add ("Stick");
+					noActionTaken = false;
+					timScript.gameState = "Mushroom1";
+				}
 			}
 
-			if (timScript.mood >= 5) {
-				print ("Tim plockar upp en pinne som han hittar på marken.");
-				StartCoroutine (waitForAnim(animationTime));
-				timScript.animScared.Play ("shrubbery");
-				timScript.inventory.Add ("Stick");
-				noActionTaken = false;
-				timScript.gameState = "Mushroom1";
+			if (state == "Stick2") {
+				if (timScript.mood < 5) {
+					print ("Tim plockar upp pinnen");
+					timScript.animScared.Play ("shrubbery");
+					StartCoroutine (waitForAnim (animationTime));
+					timScript.inventory.Add ("Stick");
+					noActionTaken = false;
+					timScript.gameState = "Frog1";
+				}
+
+				if (timScript.mood >= 5) {
+					print ("Tim förstör pinnen i sin ilska.");
+					timScript.animScared.Play ("stickdestroy");
+					StartCoroutine (waitForAnim (animationTime));
+					noActionTaken = false;
+					timScript.gameState = "Frog2";
+				}
 			}
 		}
-
-		if(state == "Stick2"){
-			if(timScript.mood < 5){
-				print ("Tim plockar upp pinnen");
-				timScript.animScared.Play ("shrubbery");
-				StartCoroutine (waitForAnim(animationTime));
-				timScript.inventory.Add ("Stick");
-				noActionTaken = false;
-				timScript.gameState = "Frog1";
-			}
-
-			if (timScript.mood >= 5) {
-				print ("Tim förstör pinnen i sin ilska.");
-				timScript.animScared.Play ("stickdestroy");
-				StartCoroutine (waitForAnim(animationTime));
-				noActionTaken = false;
-				timScript.gameState = "Frog2";
-			}
-		}
-
 	}
 
 	void Destroy(){

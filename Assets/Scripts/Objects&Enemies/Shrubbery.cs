@@ -35,6 +35,11 @@ public class Shrubbery : MonoBehaviour {
 			scroller.GetComponent<ScrollingBackground> ().stopScroll ();
 			scroller1.GetComponent<ScrollingBackground> ().stopScroll ();
 			scroller2.GetComponent<ScrollingBackground> ().stopScroll ();
+//			timScript.leftArmAnim.Stop ("LeftArm");
+//			timScript.leftLegAnim.Stop ("LeftLeg");
+//			timScript.rightArmAnim.Stop ("RightArm");
+//			timScript.rightLegAnim.Stop ("RightLeg");
+
 			CheckGameState ();
 
 			StartCoroutine (waitForAction(timeUntilAction));
@@ -42,6 +47,7 @@ public class Shrubbery : MonoBehaviour {
 	}
 
 	void Act(){
+		if(timScript.moodChanged == true){
 		if(state == "Berries"){
 			if(timScript.mood < 5){
 				print ("Tim collects some of the berries");
@@ -60,7 +66,7 @@ public class Shrubbery : MonoBehaviour {
 				timScript.gameState = "Stones1";
 			}
 		}
-
+		}
 	}
 
 	void Destroy(){
@@ -79,6 +85,10 @@ public class Shrubbery : MonoBehaviour {
 		scroller.GetComponent<ScrollingBackground> ().startScroll ();
 		scroller1.GetComponent<ScrollingBackground> ().startScroll ();
 		scroller2.GetComponent<ScrollingBackground> ().startScroll ();
+//		timScript.leftArmAnim.Play ("LeftArm");
+//		timScript.leftLegAnim.Play ("LeftLeg");
+//		timScript.rightArmAnim.Play ("RightArm");
+//		timScript.rightLegAnim.Play ("RightLeg");
 		Destroy ();
 
 	}

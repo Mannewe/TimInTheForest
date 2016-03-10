@@ -43,63 +43,64 @@ public class Sword : MonoBehaviour {
 	}
 
 	void Act(){
-		if(state == "Sword1"){
-			if(timScript.mood < 5){
-				print ("Tim plockar upp svärdet som grodan tappat. Tim vandrar vidare och stöter på skogens drakorm.");
-				StartCoroutine (waitForAnim(animationTime));
-				timScript.animScared.Play ("shrubbery");
-				timScript.inventory.Add ("Sword");
-				noActionTaken = false;
-				timScript.gameState = "Dragon2";
+		if (timScript.moodChanged == true) {
+			if (state == "Sword1") {
+				if (timScript.mood < 5) {
+					print ("Tim plockar upp svärdet som grodan tappat. Tim vandrar vidare och stöter på skogens drakorm.");
+					StartCoroutine (waitForAnim (animationTime));
+					timScript.animScared.Play ("shrubbery");
+					timScript.inventory.Add ("Sword");
+					noActionTaken = false;
+					timScript.gameState = "Dragon2";
+				}
+
+				if (timScript.mood >= 5) {
+					print ("Tim plockar upp svärdet som grodan tappat. Tim vandrar vidare och stöter på skogens drakorm. ");
+					StartCoroutine (waitForAnim (animationTime));
+					timScript.animScared.Play ("shrubbery");
+					timScript.inventory.Add ("Sword");
+					noActionTaken = false;
+					timScript.gameState = "Dragon2";
+				}
 			}
 
-			if (timScript.mood >= 5) {
-				print ("Tim plockar upp svärdet som grodan tappat. Tim vandrar vidare och stöter på skogens drakorm. ");
-				StartCoroutine (waitForAnim(animationTime));
-				timScript.animScared.Play ("shrubbery");
-				timScript.inventory.Add ("Sword");
-				noActionTaken = false;
-				timScript.gameState = "Dragon2";
+			if (state == "Sword2") {
+				if (timScript.mood < 5) {
+					print ("Tim plockar upp svärdet som grodan tappat. Tim vandrar vidare och stöter på skogens drakorm.");
+					timScript.animScared.Play ("shrubbery");
+					StartCoroutine (waitForAnim (animationTime));
+					timScript.inventory.Add ("Sword");
+					noActionTaken = false;
+					timScript.gameState = "Dragon4";
+				}
+
+				if (timScript.mood >= 5) {
+					print ("Tim plockar upp svärdet som grodan tappat. Tim vandrar vidare och stöter på skogens drakorm.");
+					timScript.animScared.Play ("shrubbery");
+					StartCoroutine (waitForAnim (animationTime));
+					timScript.inventory.Add ("Sword");
+					noActionTaken = false;
+					timScript.gameState = "Dragon4";
+				}
+			}
+
+			if (state == "Sword3") {
+				if (timScript.mood < 5) {
+					print ("Tim collects some of the berries");
+					StartCoroutine (waitForAnim (animationTime));
+					//timScript.inventory.Add ("berries");
+					noActionTaken = false;
+					timScript.gameState = "Frog5";
+				}
+
+				if (timScript.mood >= 5) {
+					print ("Tim smashes the berries because of angry");
+					StartCoroutine (waitForAnim (animationTime));
+					noActionTaken = false;
+					timScript.gameState = "Frog5";
+				}
 			}
 		}
-
-		if(state == "Sword2"){
-			if(timScript.mood < 5){
-				print ("Tim plockar upp svärdet som grodan tappat. Tim vandrar vidare och stöter på skogens drakorm.");
-				timScript.animScared.Play ("shrubbery");
-				StartCoroutine (waitForAnim(animationTime));
-				timScript.inventory.Add ("Sword");
-				noActionTaken = false;
-				timScript.gameState = "Dragon4";
-			}
-
-			if (timScript.mood >= 5) {
-				print ("Tim plockar upp svärdet som grodan tappat. Tim vandrar vidare och stöter på skogens drakorm.");
-				timScript.animScared.Play ("shrubbery");
-				StartCoroutine (waitForAnim(animationTime));
-				timScript.inventory.Add ("Sword");
-				noActionTaken = false;
-				timScript.gameState = "Dragon4";
-			}
-		}
-
-		if(state == "Sword3"){
-			if(timScript.mood < 5){
-				print ("Tim collects some of the berries");
-				StartCoroutine (waitForAnim(animationTime));
-				//timScript.inventory.Add ("berries");
-				noActionTaken = false;
-				timScript.gameState = "Frog5";
-			}
-
-			if (timScript.mood >= 5) {
-				print ("Tim smashes the berries because of angry");
-				StartCoroutine (waitForAnim(animationTime));
-				noActionTaken = false;
-				timScript.gameState = "Frog5";
-			}
-		}
-
 	}
 
 	void Destroy(){

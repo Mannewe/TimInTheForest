@@ -13,7 +13,7 @@ public class MicrophoneInput : MonoBehaviour {
 	void Start() {
 		GetComponent<AudioSource>().clip = Microphone.Start(null, true, 10, 44100);
 		GetComponent<AudioSource>().loop = true; // Set the AudioClip to loop
-		GetComponent<AudioSource>().mute = true; // Mute the sound, we don't want the player to hear it
+		GetComponent<AudioSource>().mute = false; // Mute the sound, we don't want the player to hear it
 		while (!(Microphone.GetPosition(null) > 0)){} // Wait until the recording has started
 		GetComponent<AudioSource>().Play(); // Play the audio source!
 
@@ -64,6 +64,9 @@ public class MicrophoneInput : MonoBehaviour {
 	IEnumerator WhisperDelay(float waitTime){
 		yield return new WaitForSeconds (waitTime);
 		timscript.Whisper (true);
+		timscript.moodChanged = true;
+		yield return new WaitForSeconds (0.1f);
+		timscript.moodChanged = false;
 		//talkDelayer = false;
 		//StartCoroutine (talkDelay(1f));
 	}
@@ -71,6 +74,9 @@ public class MicrophoneInput : MonoBehaviour {
 	IEnumerator YellDelay(float waitTime){
 		yield return new WaitForSeconds (waitTime);
 		timscript.Yell (true);
+		timscript.moodChanged = true;
+		yield return new WaitForSeconds (0.1f);
+		timscript.moodChanged = false;
 		//talkDelayer = false;
 		//StartCoroutine (talkDelay(1f));
 	}

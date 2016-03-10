@@ -41,28 +41,29 @@ public class Rock : MonoBehaviour {
 	}
 
 	void Act(){
-		if(state == "Stones1"){
-			if(timScript.mood < 5){
-				print ("Tim hittar två stenar på vägen, som han plockar upp och lägger i sin ryggsäck. ");
-				StartCoroutine (waitForAnim(animationTime));
-				timScript.animScared.Play ("shrubbery");
-				timScript.inventory.Add ("Stone1");
-				timScript.inventory.Add ("Stone2");
-				noActionTaken = false;
-				timScript.gameState = "Bunny2";
-			}
+		if (timScript.moodChanged == true) {
+			if (state == "Stones1") {
+				if (timScript.mood < 5) {
+					print ("Tim hittar två stenar på vägen, som han plockar upp och lägger i sin ryggsäck. ");
+					StartCoroutine (waitForAnim (animationTime));
+					timScript.animScared.Play ("shrubbery");
+					timScript.inventory.Add ("Stone1");
+					timScript.inventory.Add ("Stone2");
+					noActionTaken = false;
+					timScript.gameState = "Bunny2";
+				}
 
-			if (timScript.mood >= 5) {
-				print ("Tim hittar två stenar på vägen, som han plockar upp och lägger i sin ryggsäck. ");
-				StartCoroutine (waitForAnim(animationTime));
-				timScript.animScared.Play ("shrubbery");
-				timScript.inventory.Add ("Stone1");
-				timScript.inventory.Add ("Stone2");
-				noActionTaken = false;
-				timScript.gameState = "Bunny2";
+				if (timScript.mood >= 5) {
+					print ("Tim hittar två stenar på vägen, som han plockar upp och lägger i sin ryggsäck. ");
+					StartCoroutine (waitForAnim (animationTime));
+					timScript.animScared.Play ("shrubbery");
+					timScript.inventory.Add ("Stone1");
+					timScript.inventory.Add ("Stone2");
+					noActionTaken = false;
+					timScript.gameState = "Bunny2";
+				}
 			}
 		}
-
 	}
 
 	void Destroy(){

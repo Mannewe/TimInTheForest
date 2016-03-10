@@ -47,43 +47,44 @@ public class Bunny : MonoBehaviour {
 	}
 
 	void Act(){
-		if(state == "Bunny1"){
-			if(timScript.mood < 5){
-				print ("Tim ger sina bär till kaninen, som väljer att slå följe med Tim.");
-				StartCoroutine (waitForAnim(animationTime));
-				StartCoroutine (waitForBunny(animationTime - 0.1f));
-				toss.Play ("berryThrow");
-				timScript.inventory.Remove ("Berries");
-				noActionTaken = false;
-				timScript.gameState = "Raven1";
+		if (timScript.moodChanged == true) {
+			if (state == "Bunny1") {
+				if (timScript.mood < 5) {
+					print ("Tim ger sina bär till kaninen, som väljer att slå följe med Tim.");
+					StartCoroutine (waitForAnim (animationTime));
+					StartCoroutine (waitForBunny (animationTime - 0.1f));
+					toss.Play ("berryThrow");
+					timScript.inventory.Remove ("Berries");
+					noActionTaken = false;
+					timScript.gameState = "Raven1";
+				}
+
+				if (timScript.mood >= 5) {
+					print ("Tim skrämmer iväg kaninen.");
+					StartCoroutine (waitForAnim (animationTime));
+					noActionTaken = false;
+					timScript.gameState = "Stick1";
+				}
 			}
 
-			if (timScript.mood >= 5) {
-				print ("Tim skrämmer iväg kaninen.");
-				StartCoroutine (waitForAnim(animationTime));
-				noActionTaken = false;
-				timScript.gameState = "Stick1";
+			if (state == "Bunny2") {
+				if (timScript.mood < 5) {
+					print ("Tim ignorerar kaninen, och går vidare.");
+					StartCoroutine (waitForAnim (animationTime));
+					noActionTaken = false;
+					timScript.gameState = "Stick1";
+				}
+
+				if (timScript.mood >= 5) {
+					print ("Tim kastar en av sina stenar på kaninen, som dör. Tim plockar upp den döda kaninen och lägger den i sin ryggsäck.");
+					StartCoroutine (waitForAnim (animationTime));
+					timScript.inventory.Add ("Bunny");
+					timScript.inventory.Remove ("Stone1");
+					noActionTaken = false;
+					timScript.gameState = "Raven2";
+				}
 			}
 		}
-
-		if(state == "Bunny2"){
-			if(timScript.mood < 5){
-				print ("Tim ignorerar kaninen, och går vidare.");
-				StartCoroutine (waitForAnim(animationTime));
-				noActionTaken = false;
-				timScript.gameState = "Stick1";
-			}
-
-			if (timScript.mood >= 5) {
-				print ("Tim kastar en av sina stenar på kaninen, som dör. Tim plockar upp den döda kaninen och lägger den i sin ryggsäck.");
-				StartCoroutine (waitForAnim(animationTime));
-				timScript.inventory.Add ("Bunny");
-				timScript.inventory.Remove ("Stone1");
-				noActionTaken = false;
-				timScript.gameState = "Raven2";
-			}
-		}
-
 	}
 
 	void Destroy(){

@@ -43,6 +43,7 @@ public class MushroomGood : MonoBehaviour {
 	}
 
 	void Act(){
+		if(timScript.moodChanged == true){
 		if(state == "Mushroom1"){
 			if(timScript.mood < 5){
 				print ("Tim plockar de båda svamparna och lägger dem i sin ryggsäck. ");
@@ -60,7 +61,7 @@ public class MushroomGood : MonoBehaviour {
 			}
 		}
 			
-
+		}
 	}
 
 	void Destroy(){

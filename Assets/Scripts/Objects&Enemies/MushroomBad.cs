@@ -41,25 +41,26 @@ public class MushroomBad : MonoBehaviour {
 	}
 
 	void Act(){
-		if(state == "Mushroom1"){
-			if(timScript.mood < 5){
-				print ("Tim plockar de båda svamparna och lägger dem i sin ryggsäck. ");
-				timScript.animScared.Play ("shrubbery");
-				StartCoroutine (waitForAnim(animationTime));
-				timScript.inventory.Add ("MushroomBad");
-				noActionTaken = false;
-				timScript.gameState = "Frog4";
-			}
+		if (timScript.moodChanged == true) {
+			if (state == "Mushroom1") {
+				if (timScript.mood < 5) {
+					print ("Tim plockar de båda svamparna och lägger dem i sin ryggsäck. ");
+					timScript.animScared.Play ("shrubbery");
+					StartCoroutine (waitForAnim (animationTime));
+					timScript.inventory.Add ("MushroomBad");
+					noActionTaken = false;
+					timScript.gameState = "Frog4";
+				}
 
-			if (timScript.mood >= 5) {
-				print ("Tim trampar ner svamparna.");
-				timScript.animScared.Play ("stickdestroy");
-				StartCoroutine (waitForAnim(animationTime));
-				noActionTaken = false;
-				timScript.gameState = "Frog3";
+				if (timScript.mood >= 5) {
+					print ("Tim trampar ner svamparna.");
+					timScript.animScared.Play ("stickdestroy");
+					StartCoroutine (waitForAnim (animationTime));
+					noActionTaken = false;
+					timScript.gameState = "Frog3";
+				}
 			}
 		}
-
 	}
 
 	void Destroy(){

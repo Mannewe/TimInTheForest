@@ -41,42 +41,43 @@ public class Bird : MonoBehaviour {
 	}
 
 	void Act(){
-		if(state == "Raven1"){
-			if(timScript.mood < 5){
-				print ("Tim och kaninen möter en korp. Korpen säger: -Skogens kung är ensam. Korpen flyger iväg");
-				StartCoroutine (waitForAnim(animationTime));
-				noActionTaken = false;
-				timScript.gameState = "Stick2";
+		if (timScript.moodChanged == true) {
+			if (state == "Raven1") {
+				if (timScript.mood < 5) {
+					print ("Tim och kaninen möter en korp. Korpen säger: -Skogens kung är ensam. Korpen flyger iväg");
+					StartCoroutine (waitForAnim (animationTime));
+					noActionTaken = false;
+					timScript.gameState = "Stick2";
+				}
+
+				if (timScript.mood >= 5) {
+					print ("Tim och kaninen möter en korp. Korpen säger: -Skogens kung är ensam. Korpen flyger iväg");
+					StartCoroutine (waitForAnim (animationTime));
+					noActionTaken = false;
+					timScript.gameState = "Stick2";
+				}
 			}
 
-			if (timScript.mood >= 5) {
-				print ("Tim och kaninen möter en korp. Korpen säger: -Skogens kung är ensam. Korpen flyger iväg");
-				StartCoroutine (waitForAnim(animationTime));
-				noActionTaken = false;
-				timScript.gameState = "Stick2";
+			if (state == "Raven2") {
+				if (timScript.mood < 5) {
+					print ("Tim möter en korp. Korpen säger: - Ormen älskar att äta grodlår. Tim kastar sin sista sten på korpen, som flyger iväg. I sin brådska tappar korpen sitt svärd på marken. Tim plockar upp svärdet.");
+					StartCoroutine (waitForAnim (animationTime));
+					noActionTaken = false;
+					timScript.inventory.Remove ("Stone2");
+					timScript.inventory.Add ("Sword");
+					timScript.gameState = "Sword3";
+				}
+
+				if (timScript.mood >= 5) {
+					print ("Tim möter en korp. Korpen säger: - Ormen älskar att äta grodlår. Tim kastar sin sista sten på korpen, som flyger iväg. I sin brådska tappar korpen sitt svärd på marken. Tim plockar upp svärdet.");
+					StartCoroutine (waitForAnim (animationTime));
+					noActionTaken = false;
+					timScript.inventory.Remove ("Stone2");
+					timScript.inventory.Add ("Sword");
+					timScript.gameState = "Sword3";
+				}
 			}
 		}
-
-		if(state == "Raven2"){
-			if(timScript.mood < 5){
-				print ("Tim möter en korp. Korpen säger: - Ormen älskar att äta grodlår. Tim kastar sin sista sten på korpen, som flyger iväg. I sin brådska tappar korpen sitt svärd på marken. Tim plockar upp svärdet.");
-				StartCoroutine (waitForAnim(animationTime));
-				noActionTaken = false;
-				timScript.inventory.Remove ("Stone2");
-				timScript.inventory.Add ("Sword");
-				timScript.gameState = "Sword3";
-			}
-
-			if (timScript.mood >= 5) {
-				print ("Tim möter en korp. Korpen säger: - Ormen älskar att äta grodlår. Tim kastar sin sista sten på korpen, som flyger iväg. I sin brådska tappar korpen sitt svärd på marken. Tim plockar upp svärdet.");
-				StartCoroutine (waitForAnim(animationTime));
-				noActionTaken = false;
-				timScript.inventory.Remove ("Stone2");
-				timScript.inventory.Add ("Sword");
-				timScript.gameState = "Sword3";
-			}
-		}
-
 	}
 
 	void Destroy(){

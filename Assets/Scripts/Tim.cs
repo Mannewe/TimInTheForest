@@ -8,6 +8,17 @@ public class Tim : MonoBehaviour {
 	GameObject pratBubbla;
 	Dialog dialog = new Dialog();
 	public bool started = false;
+	public bool moodChanged = false;
+
+	public GameObject leftLeg;
+	public GameObject rightLeg;
+	public GameObject leftArm;
+	public GameObject rightArm;
+
+	public Animation leftLegAnim;
+	public Animation rightLegAnim;
+	public Animation rightArmAnim;
+	public Animation leftArmAnim;
 
 	//Animations
 	public Animation animScared;
@@ -27,6 +38,15 @@ public class Tim : MonoBehaviour {
 	GameObject FrogDead;
 	GameObject Flower;
 	GameObject startbox;
+
+	GameObject scroller1;
+	GameObject scroller2;
+	GameObject scroller3;
+
+	ScrollingBackground scroller1Script;
+	ScrollingBackground scroller2Script;
+	ScrollingBackground scroller3Script;
+
 	public GameObject bunnyFollower;
 
 	GUIStyle style = new GUIStyle();
@@ -49,7 +69,16 @@ public class Tim : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		getDialog ();
+
+		leftLeg = GameObject.FindWithTag ("LeftLeg");
+		rightLeg = GameObject.FindWithTag ("RightLeg");
+		leftArm = GameObject.FindWithTag ("LeftArm");
+		rightArm = GameObject.FindWithTag ("RightArm");
+
+		leftArmAnim = leftArm.GetComponent<Animation> ();
+		leftLegAnim = leftLeg.GetComponent<Animation> ();
+		rightArmAnim = rightArm.GetComponent<Animation> ();
+		rightLegAnim = rightLeg.GetComponent<Animation> ();
 
 		style.fontSize = 20;
 		style2.fontSize = 40;
@@ -64,6 +93,14 @@ public class Tim : MonoBehaviour {
 		scream = aSources [0];
 		angry = aSources [1];
 		calm = aSources [2];
+
+		scroller1 = GameObject.FindWithTag ("scroller1");
+		scroller2 = GameObject.FindWithTag ("scroller2");
+		scroller3 = GameObject.FindWithTag ("scroller3");
+
+		scroller1Script = scroller1.GetComponent<ScrollingBackground> ();
+		scroller2Script = scroller2.GetComponent<ScrollingBackground> ();
+		scroller3Script = scroller3.GetComponent<ScrollingBackground> ();
 
 		pinne = GameObject.FindWithTag("Pinne");
 		Berries = GameObject.FindWithTag("Bär");
@@ -112,6 +149,8 @@ public class Tim : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		print (scroller1Script.speed);
+		getDialog ();
 		startScreen ();
 		if(started == true){
 		print (dialoger);
@@ -122,6 +161,16 @@ public class Tim : MonoBehaviour {
 
 		MoodChanger ();
 		checkInventory ();
+
+			if(animScared.IsPlaying("animScared")){
+				leftArmAnim.Play ("ScaredArmLeft");
+				rightArmAnim.Play ("ScaredArmRight");
+			}
+
+			if(animScared.IsPlaying("animAngry")){
+				leftArmAnim.Play ("AngryArmLeft");
+				rightArmAnim.Play ("AngryArmRight");
+			}
 
 //		if(Input.GetKeyDown("w")){
 //			Whisper (true);
@@ -209,9 +258,17 @@ public class Tim : MonoBehaviour {
 	}
 
 	public void TimTalk(){
-		
-		if(mood <= 3){
-			dialoger = TimDialogHappy [Random.Range(0,1)].ToString ();
+
+		if(mood == 0){
+			scroller1Script.speed = 0f;
+			scroller2Script.speed = 0f;
+			scroller3Script.speed = 0f;
+		}
+		if(mood <= 3 && mood >0){
+			scroller1Script.speed = 0.2f;
+			scroller2Script.speed = 0.5f;
+			scroller3Script.speed = 1.5f;
+			dialoger = TimDialogHappy [Random.Range(0,3)].ToString ();
 			//playAudio calm
 			calm.Play ();
 			if(!animScared.isPlaying){
@@ -220,6 +277,9 @@ public class Tim : MonoBehaviour {
 		}
 
 		if(mood >= 4 && mood <= 7){
+			scroller1Script.speed = 0.2f;
+			scroller2Script.speed = 0.5f;
+			scroller3Script.speed = 1.5f;
 			dialoger = TimDialogScared [Random.Range(0,3)].ToString ();
 			//playAudio scared
 			if (!animScared.isPlaying) {
@@ -228,14 +288,21 @@ public class Tim : MonoBehaviour {
 			scream.Play ();
 		}
 
-		if(mood >= 8){
-			dialoger = TimDialogAngry [Random.Range(0,2)].ToString ();
+		if(mood >= 8 && mood < 10){
+			scroller1Script.speed = 0.2f;
+			scroller2Script.speed = 0.5f;
+			scroller3Script.speed = 1.5f;
+			dialoger = TimDialogAngry [Random.Range(0,3)].ToString ();
 			//playAudio angry
-
 			angry.Play ();
 			if (!animScared.isPlaying) {
 				animScared.Play ("animAngry");
 			}
+		}
+		if (mood == 10) {
+			scroller1Script.speed = 0f;
+			scroller2Script.speed = 0f;
+			scroller3Script.speed = 0f;
 		}
 	}
 
@@ -355,15 +422,688 @@ public class Tim : MonoBehaviour {
 		TimDialogScared = new ArrayList ();
 		TimDialogAngry = new ArrayList ();
 
-		TimDialogHappy.Add ("This forest is beautiful."); // happy
-		TimDialogHappy.Add ("Where are the mushrooms?"); // happy
-		TimDialogScared.Add ("I wonder if there are \n wolves in this forest."); // scared
-		TimDialogScared.Add ("I want to go home."); // scared
-		TimDialogScared.Add ("I have a feeling \n something’s watching me."); // scared
-		TimDialogScared.Add ("Aaah! Oh, it was just \n a butterfly."); // scared
-		TimDialogAngry.Add ("What am I doing here?"); // angry
-		TimDialogAngry.Add ("That flower looks stupid."); // angry
-		TimDialogAngry.Add ("I really want to punch something."); // angry
+		if(gameState == "Bunny1"){
+			TimDialogHappy.Clear ();
+			TimDialogScared.Clear ();
+			TimDialogAngry.Clear ();
+
+			//When meeting object
+			if (scroller1Script.speed == 0) {
+				TimDialogHappy.Add ("Come here little bunny, have some berries.");
+				TimDialogScared.Add ("Hi, are you running around lost in a forest? I can relate.");
+				TimDialogAngry.Add ("");
+			}
+
+			//before meeting object
+			if(scroller1Script.speed != 0){
+			//Dialog
+			//happy
+			TimDialogHappy.Add ("Come here little bunny, have some berries.");
+			TimDialogHappy.Add ("");
+			TimDialogHappy.Add ("");
+			//scared
+			TimDialogScared.Add ("Hi, are you running around lost in a forest? I can relate.");
+			TimDialogScared.Add ("");
+			TimDialogScared.Add ("");
+			//angry
+			TimDialogAngry.Add ("");
+			TimDialogAngry.Add ("");
+			TimDialogAngry.Add ("");
+			}
+		}
+
+		if (gameState == "Stones1") {
+
+			TimDialogHappy.Clear ();
+			TimDialogScared.Clear ();
+			TimDialogAngry.Clear ();
+
+			if (scroller1Script.speed == 0) {
+				TimDialogHappy.Add ("I'll pick up these beautiful stones");
+				TimDialogScared.Add ("I might need these?");
+				TimDialogAngry.Add ("If i pick up these stupid stones i can thow them on something");
+			}
+
+			//Dialog
+			//happy
+			if (scroller1Script.speed != 0) {
+				TimDialogHappy.Add ("Wait, didn’t we live across each other freshmen year? Oh sorry, you’re just a stone. My bad.");
+				TimDialogHappy.Add ("");
+				TimDialogHappy.Add ("");
+				//scared
+				TimDialogScared.Add ("I better take these stones in case I run into trouble.");
+				TimDialogScared.Add ("");
+				TimDialogScared.Add ("");
+				//angry
+				TimDialogAngry.Add ("These stones could be handy in a fight.");
+				TimDialogAngry.Add ("");
+				TimDialogAngry.Add ("");
+			}
+		
+		}
+
+		if(gameState == "Raven1"){
+			TimDialogHappy.Clear ();
+			TimDialogScared.Clear ();
+			TimDialogAngry.Clear ();
+
+
+			//When meeting object
+			if (scroller1Script.speed == 0) {
+				TimDialogHappy.Add ("Come here little bunny, have some berries.");
+				TimDialogScared.Add ("Hi, are you running around lost in a forest? I can relate.");
+				TimDialogAngry.Add ("");
+			}
+
+			//Dialog
+			//happy
+		if (scroller1Script.speed != 0) {
+			TimDialogHappy.Add ("You look like you know what’s up. Do you have any tips for me?");
+			TimDialogHappy.Add ("");
+			TimDialogHappy.Add ("");
+			//scared
+			TimDialogScared.Add ("");
+			TimDialogScared.Add ("");
+			TimDialogScared.Add ("");
+			//angry
+			TimDialogAngry.Add ("");
+			TimDialogAngry.Add ("");
+			TimDialogAngry.Add ("");
+		}
+		}
+
+		if(gameState == "Bunny2"){
+			TimDialogHappy.Clear ();
+			TimDialogScared.Clear ();
+			TimDialogAngry.Clear ();
+
+
+			//When meeting object
+			if (scroller1Script.speed == 0) {
+				TimDialogHappy.Add ("Come here little bunny, have some berries.");
+				TimDialogScared.Add ("Hi, are you running around lost in a forest? I can relate.");
+				TimDialogAngry.Add ("");
+			}
+
+			//Dialog
+			//happy
+		if (scroller1Script.speed != 0) {
+			TimDialogHappy.Add ("I’m giving you the silent treatment. Damn it, I wasn’t supposed to speak.");
+			TimDialogHappy.Add ("");
+			TimDialogHappy.Add ("");
+			//scared
+			TimDialogScared.Add ("I’m only slightly scared of you. But don’t tell anyone.");
+			TimDialogScared.Add ("");
+			TimDialogScared.Add ("");
+			//angry
+			TimDialogAngry.Add ("Die stupid bunny!");
+			TimDialogAngry.Add ("");
+			TimDialogAngry.Add ("");
+		}
+		}
+
+		if(gameState == "Stick1"){
+			TimDialogHappy.Clear ();
+			TimDialogScared.Clear ();
+			TimDialogAngry.Clear ();
+
+			//When meeting object
+			if (scroller1Script.speed == 0) {
+				TimDialogHappy.Add ("Come here little bunny, have some berries.");
+				TimDialogScared.Add ("Hi, are you running around lost in a forest? I can relate.");
+				TimDialogAngry.Add ("");
+			}
+
+			//Dialog
+			//happy
+		if (scroller1Script.speed != 0) {
+			TimDialogHappy.Add ("Oh, what a pretty stick!");
+			TimDialogHappy.Add ("");
+			TimDialogHappy.Add ("");
+			//scared
+			TimDialogScared.Add ("I wonder who’s stick this is. Maybe some evil monster dropped it.");
+			TimDialogScared.Add ("");
+			TimDialogScared.Add ("");
+			//angry
+			TimDialogAngry.Add ("I could really use this stick in case I need to fight someone. Or something. ");
+			TimDialogAngry.Add ("");
+			TimDialogAngry.Add ("");
+		}
+		}
+
+		if(gameState == "Berries"){
+			TimDialogHappy.Clear ();
+			TimDialogScared.Clear ();
+			TimDialogAngry.Clear ();
+
+			//When meeting object
+			if (scroller1Script.speed == 0) {
+				TimDialogHappy.Add ("Come here little bunny, have some berries.");
+				TimDialogScared.Add ("Hi, are you running around lost in a forest? I can relate.");
+				TimDialogAngry.Add ("");
+			}
+
+			//Dialog
+			//happy
+		if (scroller1Script.speed != 0) {
+			TimDialogHappy.Add ("Mybe i can find som tasty berries?");
+			TimDialogHappy.Add ("What a beautiful place");
+			TimDialogHappy.Add ("Dum dubidumbidum dum blalalala singiling ding..");
+			//scared
+			TimDialogScared.Add ("Aah, this place gives me the creeps.");
+			TimDialogScared.Add ("AAAAAAh! Did i just hear a wolf? i need to get out of here");
+			TimDialogScared.Add ("");
+			//angry
+			TimDialogAngry.Add ("I hate this dumb forest place, i will ruin it");
+			TimDialogAngry.Add ("Stupid flower, stupid rock, stupid trees, stupid stupid STUPIID");
+			TimDialogAngry.Add ("");
+		}
+		}
+
+		if(gameState == "Stick2"){
+			TimDialogHappy.Clear ();
+			TimDialogScared.Clear ();
+			TimDialogAngry.Clear ();
+
+			//When meeting object
+			if (scroller1Script.speed == 0) {
+				TimDialogHappy.Add ("Come here little bunny, have some berries.");
+				TimDialogScared.Add ("Hi, are you running around lost in a forest? I can relate.");
+				TimDialogAngry.Add ("");
+			}
+
+			//Dialog
+			//happy
+		if (scroller1Script.speed != 0) {
+			TimDialogHappy.Add ("Oh, what a pretty stick!");
+			TimDialogHappy.Add ("");
+			TimDialogHappy.Add ("");
+			//scared
+			TimDialogScared.Add ("");
+			TimDialogScared.Add ("");
+			TimDialogScared.Add ("");
+			//angry
+			TimDialogAngry.Add ("Smash the stick!");
+			TimDialogAngry.Add ("");
+			TimDialogAngry.Add ("");
+		}
+		}
+
+		if(gameState == "Raven2"){
+			TimDialogHappy.Clear ();
+			TimDialogScared.Clear ();
+			TimDialogAngry.Clear ();
+
+			//When meeting object
+			if (scroller1Script.speed == 0) {
+				TimDialogHappy.Add ("Come here little bunny, have some berries.");
+				TimDialogScared.Add ("Hi, are you running around lost in a forest? I can relate.");
+				TimDialogAngry.Add ("");
+			}
+
+			//Dialog
+			//happy
+		if (scroller1Script.speed != 0) {
+			TimDialogHappy.Add ("");
+			TimDialogHappy.Add ("");
+			TimDialogHappy.Add ("");
+			//scared
+			TimDialogScared.Add ("");
+			TimDialogScared.Add ("");
+			TimDialogScared.Add ("");
+			//angry
+			TimDialogAngry.Add ("");
+			TimDialogAngry.Add ("");
+			TimDialogAngry.Add ("");
+		}
+		}
+
+		if(gameState == "Frog1"){
+			TimDialogHappy.Clear ();
+			TimDialogScared.Clear ();
+			TimDialogAngry.Clear ();
+
+			//When meeting object
+			if (scroller1Script.speed == 0) {
+				TimDialogHappy.Add ("Come here little bunny, have some berries.");
+				TimDialogScared.Add ("Hi, are you running around lost in a forest? I can relate.");
+				TimDialogAngry.Add ("");
+			}
+
+			//Dialog
+			//happy
+			if (scroller1Script.speed != 0) {
+				TimDialogHappy.Add ("Here you go Mr Frog King sir, have a bunny!");
+				TimDialogHappy.Add ("Who are you? Do you have a daughter I can marry?");
+				TimDialogHappy.Add ("");
+				//scared
+				TimDialogScared.Add ("");
+				TimDialogScared.Add ("");
+				TimDialogScared.Add ("");
+				//angry
+				TimDialogAngry.Add ("");
+				TimDialogAngry.Add ("");
+				TimDialogAngry.Add ("");
+			}
+		}
+
+		if(gameState == "Frog2"){
+			TimDialogHappy.Clear ();
+			TimDialogScared.Clear ();
+			TimDialogAngry.Clear ();
+
+			//When meeting object
+			if (scroller1Script.speed == 0) {
+				TimDialogHappy.Add ("Come here little bunny, have some berries.");
+				TimDialogScared.Add ("Hi, are you running around lost in a forest? I can relate.");
+				TimDialogAngry.Add ("");
+			}
+
+			//Dialog
+			//happy
+			if (scroller1Script.speed != 0) {
+				TimDialogHappy.Add ("Who are you? Do you have a daughter I can marry?");
+				TimDialogHappy.Add ("Here you go Mr Frog King sir, have a bunny!");
+				TimDialogHappy.Add ("");
+				//scared
+				TimDialogScared.Add ("");
+				TimDialogScared.Add ("");
+				TimDialogScared.Add ("");
+				//angry
+				TimDialogAngry.Add ("");
+				TimDialogAngry.Add ("");
+				TimDialogAngry.Add ("");
+			}
+		}
+
+		if(gameState == "Frog3"){
+			TimDialogHappy.Clear ();
+			TimDialogScared.Clear ();
+			TimDialogAngry.Clear ();
+
+			//When meeting object
+			if (scroller1Script.speed == 0) {
+				TimDialogHappy.Add ("Come here little bunny, have some berries.");
+				TimDialogScared.Add ("Hi, are you running around lost in a forest? I can relate.");
+				TimDialogAngry.Add ("");
+			}
+
+			//Dialog
+			//happy
+			if (scroller1Script.speed != 0) {
+				TimDialogHappy.Add ("Who are you? Do you have a daughter I can marry?");
+				TimDialogHappy.Add ("");
+				TimDialogHappy.Add ("");
+				//scared
+				TimDialogScared.Add ("");
+				TimDialogScared.Add ("");
+				TimDialogScared.Add ("");
+				//angry
+				TimDialogAngry.Add ("");
+				TimDialogAngry.Add ("");
+				TimDialogAngry.Add ("");
+			}
+		}
+
+		if(gameState == "Frog4"){
+			TimDialogHappy.Clear ();
+			TimDialogScared.Clear ();
+			TimDialogAngry.Clear ();
+
+			//When meeting object
+			if (scroller1Script.speed == 0) {
+				TimDialogHappy.Add ("Come here little bunny, have some berries.");
+				TimDialogScared.Add ("Hi, are you running around lost in a forest? I can relate.");
+				TimDialogAngry.Add ("");
+			}
+
+			//Dialog
+			//happy
+			if (scroller1Script.speed != 0) {
+				TimDialogHappy.Add ("Take this mushroom.");
+				TimDialogHappy.Add ("Who are you? Do you have a daughter I can marry?");
+				TimDialogHappy.Add ("");
+				//scared
+				TimDialogScared.Add ("");
+				TimDialogScared.Add ("");
+				TimDialogScared.Add ("");
+				//angry
+				TimDialogAngry.Add ("");
+				TimDialogAngry.Add ("");
+				TimDialogAngry.Add ("");
+			}
+		}
+
+		if(gameState == "Frog5"){
+			TimDialogHappy.Clear ();
+			TimDialogScared.Clear ();
+			TimDialogAngry.Clear ();
+
+			//When meeting object
+			if (scroller1Script.speed == 0) {
+				TimDialogHappy.Add ("Come here little bunny, have some berries.");
+				TimDialogScared.Add ("Hi, are you running around lost in a forest? I can relate.");
+				TimDialogAngry.Add ("");
+			}
+
+			//Dialog
+			//happy
+			if (scroller1Script.speed != 0) {
+				TimDialogHappy.Add ("Who are you? Do you have a daughter I can marry?");
+				TimDialogHappy.Add ("You look hungry. Take this dead rabbit.");
+				TimDialogHappy.Add ("");
+				//scared
+				TimDialogScared.Add ("");
+				TimDialogScared.Add ("");
+				TimDialogScared.Add ("");
+				//angry
+				TimDialogAngry.Add ("Prepare to die!");
+				TimDialogAngry.Add ("");
+				TimDialogAngry.Add ("");
+			}
+		}
+
+		if(gameState == "Mushroom1"){
+			TimDialogHappy.Clear ();
+			TimDialogScared.Clear ();
+			TimDialogAngry.Clear ();
+
+			//When meeting object
+			if (scroller1Script.speed == 0) {
+				TimDialogHappy.Add ("Come here little bunny, have some berries.");
+				TimDialogScared.Add ("Hi, are you running around lost in a forest? I can relate.");
+				TimDialogAngry.Add ("");
+			}
+
+			//Dialog
+			//happy
+			if (scroller1Script.speed != 0) {
+				TimDialogHappy.Add ("Mushrooms! Yum!");
+				TimDialogHappy.Add ("");
+				TimDialogHappy.Add ("");
+				//scared
+				TimDialogScared.Add ("");
+				TimDialogScared.Add ("");
+				TimDialogScared.Add ("");
+				//angry
+				TimDialogAngry.Add ("Disgusting mushrooms.");
+				TimDialogAngry.Add ("");
+				TimDialogAngry.Add ("");
+			}
+		}
+
+		if(gameState == "Flower1"){
+			TimDialogHappy.Clear ();
+			TimDialogScared.Clear ();
+			TimDialogAngry.Clear ();
+		}
+
+		if(gameState == "Flower2"){
+			TimDialogHappy.Clear ();
+			TimDialogScared.Clear ();
+			TimDialogAngry.Clear ();
+
+			//When meeting object
+			if (scroller1Script.speed == 0) {
+				TimDialogHappy.Add ("Come here little bunny, have some berries.");
+				TimDialogScared.Add ("Hi, are you running around lost in a forest? I can relate.");
+				TimDialogAngry.Add ("");
+			}
+
+			//Dialog
+			//happy
+			if (scroller1Script.speed != 0) {
+				TimDialogHappy.Add ("");
+				TimDialogHappy.Add ("");
+				TimDialogHappy.Add ("");
+
+
+				//scared
+
+				TimDialogScared.Add (" ");
+				TimDialogScared.Add (" ");
+				TimDialogScared.Add (" ");
+				//angry
+				TimDialogAngry.Add (" ");
+				TimDialogAngry.Add (" ");
+				TimDialogAngry.Add (" ");
+			}
+
+
+		}
+
+		if(gameState == "Sword1"){
+			TimDialogHappy.Clear ();
+			TimDialogScared.Clear ();
+			TimDialogAngry.Clear ();
+
+			//When meeting object
+			if (scroller1Script.speed == 0) {
+				TimDialogHappy.Add ("Come here little bunny, have some berries.");
+				TimDialogScared.Add ("Hi, are you running around lost in a forest? I can relate.");
+				TimDialogAngry.Add ("");
+			}
+
+			//Dialog
+			//happy
+			if (scroller1Script.speed != 0) {
+				TimDialogHappy.Add ("This is a good sword.");
+				TimDialogHappy.Add ("");
+				TimDialogHappy.Add ("");
+				//scared
+				TimDialogScared.Add ("");
+				TimDialogScared.Add ("");
+				TimDialogScared.Add ("");
+				//angry
+				TimDialogAngry.Add ("");
+				TimDialogAngry.Add ("");
+				TimDialogAngry.Add ("");
+			}
+		}
+
+		if(gameState == "Sword2"){
+			TimDialogHappy.Clear ();
+			TimDialogScared.Clear ();
+			TimDialogAngry.Clear ();
+
+			//When meeting object
+			if (scroller1Script.speed == 0) {
+				TimDialogHappy.Add ("Come here little bunny, have some berries.");
+				TimDialogScared.Add ("Hi, are you running around lost in a forest? I can relate.");
+				TimDialogAngry.Add ("");
+			}
+
+			//Dialog
+			//happy
+			if (scroller1Script.speed != 0) {
+				TimDialogHappy.Add ("This is a good sword.");
+				TimDialogHappy.Add ("");
+				TimDialogHappy.Add ("");
+				//scared
+				TimDialogScared.Add ("");
+				TimDialogScared.Add ("");
+				TimDialogScared.Add ("");
+				//angry
+				TimDialogAngry.Add ("");
+				TimDialogAngry.Add ("");
+				TimDialogAngry.Add ("");
+			}
+		}
+
+		if(gameState == "Sword3"){
+			TimDialogHappy.Clear ();
+			TimDialogScared.Clear ();
+			TimDialogAngry.Clear ();
+
+			//When meeting object
+			if (scroller1Script.speed == 0) {
+				TimDialogHappy.Add ("Come here little bunny, have some berries.");
+				TimDialogScared.Add ("Hi, are you running around lost in a forest? I can relate.");
+				TimDialogAngry.Add ("");
+			}
+
+			//Dialog
+			//happy
+			if (scroller1Script.speed != 0) {
+				TimDialogHappy.Add ("This is a good sword.");
+				TimDialogHappy.Add ("");
+				TimDialogHappy.Add ("");
+				//scared
+				TimDialogScared.Add ("");
+				TimDialogScared.Add ("");
+				TimDialogScared.Add ("");
+				//angry
+				TimDialogAngry.Add ("");
+				TimDialogAngry.Add ("");
+				TimDialogAngry.Add ("");
+			}
+			}
+
+		if(gameState == "Dragon1"){
+			TimDialogHappy.Clear ();
+			TimDialogScared.Clear ();
+			TimDialogAngry.Clear ();
+
+			//When meeting object
+			if (scroller1Script.speed == 0) {
+				TimDialogHappy.Add ("Come here little bunny, have some berries.");
+				TimDialogScared.Add ("Hi, are you running around lost in a forest? I can relate.");
+				TimDialogAngry.Add ("");
+			}
+
+			//Dialog
+			//happy
+			if (scroller1Script.speed != 0) {
+				TimDialogHappy.Add ("Are you a flower guy? You look like a flower guy.");
+				TimDialogHappy.Add ("");
+				TimDialogHappy.Add ("");
+				//scared
+				TimDialogScared.Add ("");
+				TimDialogScared.Add ("");
+				TimDialogScared.Add ("");
+				//angry
+				TimDialogAngry.Add ("Prepare to die!");
+				TimDialogAngry.Add ("Wow, you have a nasty breath. Try brushing your teeth sometime.");
+				TimDialogAngry.Add ("Eat my stick!");
+			}
+		}
+
+		if(gameState == "Dragon2"){
+			TimDialogHappy.Clear ();
+			TimDialogScared.Clear ();
+			TimDialogAngry.Clear ();
+
+			//When meeting object
+			if (scroller1Script.speed == 0) {
+				TimDialogHappy.Add ("Come here little bunny, have some berries.");
+				TimDialogScared.Add ("Hi, are you running around lost in a forest? I can relate.");
+				TimDialogAngry.Add ("");
+			}
+
+			//Dialog
+			//happy
+			if (scroller1Script.speed != 0) {
+				TimDialogHappy.Add ("You look like something out of my favorite cartoon.");
+				TimDialogHappy.Add ("Let’s be friend. I can make you a bead necklace if you accept.");
+				TimDialogHappy.Add ("");
+				//scared
+				TimDialogScared.Add ("");
+				TimDialogScared.Add ("");
+				TimDialogScared.Add ("");
+				//angry
+				TimDialogAngry.Add ("Prepare to die!");
+				TimDialogAngry.Add ("");
+				TimDialogAngry.Add ("");
+			}
+		}
+
+		if(gameState == "Dragon3"){
+			TimDialogHappy.Clear ();
+			TimDialogScared.Clear ();
+			TimDialogAngry.Clear ();
+
+			//When meeting object
+			if (scroller1Script.speed == 0) {
+				TimDialogHappy.Add ("Come here little bunny, have some berries.");
+				TimDialogScared.Add ("Hi, are you running around lost in a forest? I can relate.");
+				TimDialogAngry.Add ("");
+			}
+
+			//Dialog
+			//happy
+			if (scroller1Script.speed != 0) {
+				TimDialogHappy.Add ("Want a flower? I just got it, actually.");
+				TimDialogHappy.Add ("");
+				TimDialogHappy.Add ("");
+				//scared
+				TimDialogScared.Add ("");
+				TimDialogScared.Add ("");
+				TimDialogScared.Add ("");
+				//angry
+				TimDialogAngry.Add ("Prepare to die!");
+				TimDialogAngry.Add ("I will kill you with my bare hands!");
+				TimDialogAngry.Add ("");
+			}
+				}
+
+				if(gameState == "Dragon4"){
+					TimDialogHappy.Clear ();
+					TimDialogScared.Clear ();
+					TimDialogAngry.Clear ();
+
+			//When meeting object
+			if (scroller1Script.speed == 0) {
+				TimDialogHappy.Add ("Come here little bunny, have some berries.");
+				TimDialogScared.Add ("Hi, are you running around lost in a forest? I can relate.");
+				TimDialogAngry.Add ("");
+			}
+
+					//Dialog
+					//happy
+			if (scroller1Script.speed != 0) {
+				TimDialogHappy.Add ("You look like you need a friend. How about it?");
+				TimDialogHappy.Add ("");
+				TimDialogHappy.Add ("");
+				//scared
+				TimDialogScared.Add ("");
+				TimDialogScared.Add ("");
+				TimDialogScared.Add ("");
+				//angry
+				TimDialogAngry.Add ("I challenge you, insect!");
+				TimDialogAngry.Add ("");
+				TimDialogAngry.Add ("");
+			}
+				}
+
+				if(gameState == "Dragon5"){
+					TimDialogHappy.Clear ();
+					TimDialogScared.Clear ();
+					TimDialogAngry.Clear ();
+
+			//When meeting object
+			if (scroller1Script.speed == 0) {
+				TimDialogHappy.Add ("Come here little bunny, have some berries.");
+				TimDialogScared.Add ("Hi, are you running around lost in a forest? I can relate.");
+				TimDialogAngry.Add ("");
+			}
+
+					//Dialog
+					//happy
+			if (scroller1Script.speed != 0) {
+				TimDialogHappy.Add ("You look starved. Care for some frog’s legs?");
+				TimDialogHappy.Add ("");
+				TimDialogHappy.Add ("");
+				//scared
+				TimDialogScared.Add ("Don’t be mad, I’m sure we can work things out.");
+				TimDialogScared.Add ("");
+				TimDialogScared.Add ("");
+				//angry
+				TimDialogAngry.Add ("I’m not scared of you, dragon or snake or whatever you are!");
+				TimDialogAngry.Add ("Prepare to die, hellspawn!");
+				TimDialogAngry.Add ("");
+			}
+		}
+
 	}
 
 	void startScreen(){
