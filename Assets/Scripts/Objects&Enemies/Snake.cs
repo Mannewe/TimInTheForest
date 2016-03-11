@@ -56,6 +56,7 @@ public class Snake : MonoBehaviour {
 
 				if (timScript.mood >= 5) {
 					print ("Tim gör ett utfall med sin pinne mot drakormen. Pinnen förstörs och Tim blir uppäten av monstret. Tim är död.");
+					timScript.animStick.SetActive (true);
 					timScript.animScared.Play ("Killstuff");
 					StartCoroutine (waitForAnim (animationTime));
 					timScript.inventory.Remove ("Stick");
@@ -75,6 +76,7 @@ public class Snake : MonoBehaviour {
 				if (timScript.mood >= 5) {
 					print ("Tim dräper ormen med ett kraftfullt slag. Med drakormens död har Tim besegrat ondskan som terroriserat skogen, men är dömd att vara vilse i all oändlighet. \n");
 					timScript.animScared.Play ("Killstuff");
+					timScript.animSword.SetActive (true);
 					StartCoroutine (waitForAnim (animationTime));
 					noActionTaken = false;
 					timScript.gameState = "Lost1";
@@ -108,6 +110,7 @@ public class Snake : MonoBehaviour {
 				}
 
 				if (timScript.mood >= 5) {
+					timScript.animSword.SetActive (true);
 					print ("Tim dräper ormen med ett kraftfullt slag. Med drakormens död har Tim besegrat ondskan som terroriserat skogen, men är dömd att vara vilse i all oändlighet. ");
 					StartCoroutine (waitForAnim (animationTime));
 					timScript.animScared.Play ("Killstuff");
@@ -126,6 +129,7 @@ public class Snake : MonoBehaviour {
 				}
 
 				if (timScript.mood >= 5) {
+					timScript.animSword.SetActive (true);
 					print ("Tim gör ett fasansfullt utfall mot drakormen, och dräper den med ett stort leende på läpparna. Tim har nu besegrat skogens makthavare, och är nu själv skogens herre och kung.");
 					StartCoroutine (waitForAnim (animationTime));
 					timScript.animScared.Play ("Killstuff");
@@ -149,6 +153,12 @@ public class Snake : MonoBehaviour {
 	IEnumerator waitForAnim(float waitTime){
 		yield return new WaitForSeconds (waitTime);
 		print ("Animation Done");
+		if(timScript.animSword.activeSelf == true){
+			timScript.animSword.SetActive (false);
+		}
+		if(timScript.animStick.activeSelf == true){
+			timScript.animStick.SetActive (false);
+		}
 		scroller.GetComponent<ScrollingBackground> ().startScroll ();
 		scroller1.GetComponent<ScrollingBackground> ().startScroll ();
 		scroller2.GetComponent<ScrollingBackground> ().startScroll ();

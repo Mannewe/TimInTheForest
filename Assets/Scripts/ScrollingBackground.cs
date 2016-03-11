@@ -3,7 +3,7 @@ using System.Collections;
 
 public class ScrollingBackground : MonoBehaviour {
 	public float speed = 0;
-	bool running = true;
+	public bool running = true;
 
 
 	// Update is called once per frame

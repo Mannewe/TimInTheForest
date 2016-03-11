@@ -61,6 +61,7 @@ public class Bird : MonoBehaviour {
 			if (state == "Raven2") {
 				if (timScript.mood < 5) {
 					print ("Tim möter en korp. Korpen säger: - Ormen älskar att äta grodlår. Tim kastar sin sista sten på korpen, som flyger iväg. I sin brådska tappar korpen sitt svärd på marken. Tim plockar upp svärdet.");
+					timScript.rockThrow.Play ("berryThrow");
 					StartCoroutine (waitForAnim (animationTime));
 					noActionTaken = false;
 					timScript.inventory.Remove ("Stone2");
@@ -70,6 +71,7 @@ public class Bird : MonoBehaviour {
 
 				if (timScript.mood >= 5) {
 					print ("Tim möter en korp. Korpen säger: - Ormen älskar att äta grodlår. Tim kastar sin sista sten på korpen, som flyger iväg. I sin brådska tappar korpen sitt svärd på marken. Tim plockar upp svärdet.");
+					timScript.rockThrow.Play ("berryThrow");
 					StartCoroutine (waitForAnim (animationTime));
 					noActionTaken = false;
 					timScript.inventory.Remove ("Stone2");

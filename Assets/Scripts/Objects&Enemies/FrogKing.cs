@@ -8,7 +8,6 @@ public class FrogKing : MonoBehaviour {
 	GameObject scroller1;
 	GameObject scroller2;
 	GameObject tim;
-	GameObject sword;
 
 	Tim timScript;
 	bool noActionTaken = true;
@@ -24,14 +23,12 @@ public class FrogKing : MonoBehaviour {
 		scroller = GameObject.FindWithTag ("scroller1");
 		scroller1 = GameObject.FindWithTag ("scroller2");
 		scroller2 = GameObject.FindWithTag ("scroller3");
-		sword = GameObject.FindWithTag ("animSword");
 		tim = GameObject.FindWithTag ("tim");
 		timScript = tim.GetComponent<Tim> ();
 	}
 
 	// Update is called once per frame
 	void Update () {
-
 
 		if(gameObject.transform.position.x <= endPos){
 			scroller.GetComponent<ScrollingBackground> ().stopScroll ();
@@ -57,6 +54,7 @@ public class FrogKing : MonoBehaviour {
 
 				if (timScript.mood >= 5) {
 					print ("Tim slår grodan med sin pinne. Grodan flyr från Tims vrede, och tappar sitt svärd.");
+					timScript.animStick.SetActive (true);
 					StartCoroutine (waitForAnim (animationTime));
 					timScript.animScared.Play ("Killstuff");
 					timScript.inventory.Remove ("Stick");
@@ -128,10 +126,12 @@ public class FrogKing : MonoBehaviour {
 				}
 
 				if (timScript.mood >= 5) {
+					//swordPos = -1f;
 					print ("Tim dräper grodan med sitt svärd. Tim tar grodans ledbrutna kropp och lägger den i sin ryggsäck.");
+					timScript.animSword.SetActive (true);
 					StartCoroutine (waitForAnim (animationTime));
 					timScript.animScared.Play ("Killstuff");
-					timScript.inventory.Remove ("Sword");
+					//timScript.inventory.Remove ("Sword");
 					timScript.inventory.Add ("FrogDead");
 					noActionTaken = false;
 					timScript.gameState = "Dragon5";
@@ -153,6 +153,12 @@ public class FrogKing : MonoBehaviour {
 	IEnumerator waitForAnim(float waitTime){
 		yield return new WaitForSeconds (waitTime);
 		print ("Animation Done");
+		if(timScript.animSword.activeSelf == true){
+			timScript.animSword.SetActive (false);
+		}
+		if(timScript.animStick.activeSelf == true){
+			timScript.animStick.SetActive (false);
+		}
 		scroller.GetComponent<ScrollingBackground> ().startScroll ();
 		scroller1.GetComponent<ScrollingBackground> ().startScroll ();
 		scroller2.GetComponent<ScrollingBackground> ().startScroll ();
