@@ -489,16 +489,16 @@ public class Tim : MonoBehaviour {
 
 			//When meeting object
 			if (scroller1Script.running == false) {
-				TimDialogHappy.Add ("Come here little bunny, have some berries.");
-				TimDialogScared.Add ("Hi, are you running around lost in a forest? I can relate.");
-				TimDialogAngry.Add ("I’m giving you the silent treatment. Damn it, I wasn’t supposed to speak.");
+				TimDialogHappy.Add ("Come here little bunny, \nhave some berries.");
+				TimDialogScared.Add ("Hi, are you running around \nlost in a forest? I can relate.");
+				TimDialogAngry.Add ("I’m giving you the silent treatment. \nDamn it, I wasn’t supposed to speak.");
 			}
 
 			//before meeting object
 			if(scroller1Script.running == true){
-				TimDialogHappy.Add("If only I had someone to share these berries with.");
-				TimDialogScared.Add("I’m not in the mood to eat all of these berries by myself.");
-				TimDialogAngry.Add("Berries are not useful in any situation, my mother told me so.");
+				TimDialogHappy.Add("If only I had someone to \nshare these berries with.");
+				TimDialogScared.Add("I’m not in the mood to eat \nall of these berries by myself.");
+				TimDialogAngry.Add("Berries are not useful in any\n situation, my mother told me so.");
 			}
 		}
 
@@ -509,18 +509,18 @@ public class Tim : MonoBehaviour {
 			TimDialogAngry.Clear ();
 
 			if (scroller1Script.running == false) {
-				TimDialogHappy.Add ("Wait, didn’t we live across each other freshmen year? Oh sorry, you’re just a stone. My bad.");
-				TimDialogHappy.Add("These stones would make a beautiful necklace.");
-				TimDialogScared.Add ("I better take these stones in case I run into trouble.");
-				TimDialogScared.Add("Oh, I could make some skipping rocks with these… If only I could find my way out of here…");
-				TimDialogAngry.Add ("These stones could be handy in a fight.");
+				TimDialogHappy.Add ("Wait, didn’t we live across \neach other freshmen year? Oh sorry, \nyou’re just a stone. My bad.");
+				TimDialogHappy.Add("These stones would make a \nbeautiful necklace.");
+				TimDialogScared.Add ("I better take these stones \nin case I run into trouble.");
+				TimDialogScared.Add("Oh, I could make some skipping \nrocks with these… If only I could find \nmy way out of here…");
+				TimDialogAngry.Add ("These stones could be\n handy in a fight.");
 			}
 
 			//Dialog
 			//happy
 			if (scroller1Script.running == true) {
-				TimDialogHappy.Add("All the single ladies.. all the single ladies…");
-				TimDialogScared.Add("Grass is fun, but trees is a richer experience");
+				TimDialogHappy.Add("All the single ladies.. all \nthe single ladies…");
+				TimDialogScared.Add("Grass is fun, but trees \nare a richer experience");
 				TimDialogAngry.Add("What is life?");
 			}
 		
@@ -534,17 +534,17 @@ public class Tim : MonoBehaviour {
 
 			//When meeting object
 			if (scroller1Script.running == false) {
-				TimDialogHappy.Add ("You look like you know what’s up. Do you have any tips for me?");
+				TimDialogHappy.Add ("You look like you know what’s up. \nDo you have any tips for me?");
 				TimDialogScared.Add ("Where did that raven come from!?");
-				TimDialogAngry.Add ("That’s it. A bird. You know what, this is just too much. I hate birds.");
+				TimDialogAngry.Add ("That’s it. A bird. You know what, \nthis is just too much. I hate birds.");
 			}
 
 			//Dialog
 			//happy
 		if (scroller1Script.running == true) {
-				TimDialogHappy.Add("I could do this all day long. If only my legs would work properly.");
-				TimDialogScared.Add ("Birds aren’t very smart creatures, right?");
-				TimDialogAngry.Add("I’ve never really been a bird person.");
+				TimDialogHappy.Add("I could do this all day long. \nIf only my legs would work properly.");
+				TimDialogScared.Add ("Birds aren’t very smart \ncreatures, right?");
+				TimDialogAngry.Add("I’ve never really been \na bird person.");
 		}
 		}
 
@@ -556,16 +556,16 @@ public class Tim : MonoBehaviour {
 
 			//When meeting object
 			if (scroller1Script.running == false) {
-				TimDialogHappy.Add ("I’m giving you the silent treatment. Damn it, I wasn’t supposed to speak.");
-				TimDialogScared.Add ("I’m only slightly scared of you. But don’t tell anyone.");
+				TimDialogHappy.Add ("I’m giving you the silent treatment.\n Damn it, I wasn’t supposed to speak.");
+				TimDialogScared.Add ("I’m only slightly scared of you. \n But don’t tell anyone.");
 				TimDialogAngry.Add ("Die stupid bunny!");
 			}
 
 			//Dialog
 			//happy
 		if (scroller1Script.running == true) {
-				TimDialogHappy.Add("All the single ladies.. all the single ladies…");
-				TimDialogScared.Add("I wonder if there are wolves in this forest.");
+				TimDialogHappy.Add("All the single ladies.. all \nthe single ladies…");
+				TimDialogScared.Add("I wonder if there are \n wolves in this forest.");
 				TimDialogAngry.Add("How the hell do I get home!?");
 		}
 		}
@@ -579,15 +579,15 @@ public class Tim : MonoBehaviour {
 			if (scroller1Script.running == false) {
 				TimDialogHappy.Add ("Oh, what a pretty stick!");
 				TimDialogHappy.Add("Ah, a magic wand!!");
-				TimDialogScared.Add ("I wonder who’s stick this is. Maybe some evil monster dropped it.");
-				TimDialogAngry.Add ("I could really use this stick in case I need to fight someone. Or something. ");
+				TimDialogScared.Add ("I wonder who’s stick this is. \n Maybe some evil monster dropped it.");
+				TimDialogAngry.Add ("I could really use this stick \n in case I need to fight someone. \nOr something. ");
 			}
 
 			//Dialog
 			//happy
 		if (scroller1Script.running == true) {
 				TimDialogHappy.Add("I like turtles.");
-				TimDialogScared.Add("I had pancakes for dinner last Saturday.");
+				TimDialogScared.Add("I had pancakes for dinner \n last Saturday.");
 				TimDialogAngry.Add("I feel like smashing something.");
 		}
 		}
@@ -600,16 +600,16 @@ public class Tim : MonoBehaviour {
 			//When meeting object
 			if (scroller1Script.running == false) {
 				TimDialogHappy.Add ("These berries look tasty.");
-				TimDialogScared.Add ("What if these berries are poisonous?");
-				TimDialogAngry.Add ("I don’t want any stupid berries. ");
+				TimDialogScared.Add ("What if these berries \n are poisonous?");
+				TimDialogAngry.Add ("I don’t want any \n stupid berries. ");
 			}
 
 			//Dialog
 			//happy
 			if (scroller1Script.running == true) {
-				TimDialogHappy.Add("I wonder if I can find some mushrooms while I’m here.");
-				TimDialogScared.Add("I’m sixty percent sure I’m lost in here. Okay, eighty percent.");
-				TimDialogAngry.Add("Stupid forest, why did I even go in here?");
+				TimDialogHappy.Add("I wonder if I can find \n some mushrooms while I’m here.");
+				TimDialogScared.Add("I’m sixty percent sure I’m \n lost in here. Okay, eighty percent.");
+				TimDialogAngry.Add("Stupid forest, why did \n I even go in here?");
 		}
 		}
 
@@ -629,7 +629,7 @@ public class Tim : MonoBehaviour {
 			//happy
 		if (scroller1Script.running == true) {
 				TimDialogHappy.Add("What should I eat for dinner?");
-				TimDialogScared.Add ("I need weapons if something will try to kill me");
+				TimDialogScared.Add ("I need weapons if case \n something will try to kill me");
 				TimDialogAngry.Add("I feel like smashing something.");
 		}
 		}
@@ -641,7 +641,7 @@ public class Tim : MonoBehaviour {
 
 			//When meeting object
 			if (scroller1Script.running == false) {
-				TimDialogHappy.Add ("A raven! I want to bath in your feathers, but then again I don’t have my glasses on me.");
+				TimDialogHappy.Add ("A raven! I want to bathe\n in your feathers, but then again \nI don’t have my glasses on me.");
 				TimDialogScared.Add ("Where did that raven come from!?");
 				TimDialogAngry.Add ("Stupid raven, get out of here!");
 			}
@@ -651,7 +651,7 @@ public class Tim : MonoBehaviour {
 		if (scroller1Script.running == true) {
 				TimDialogHappy.Add("I like turtles.");
 				TimDialogScared.Add ("Was that a wolf howling!?");
-				TimDialogAngry.Add("Father always says he wants to have a stuffed animal head hanging on the wall… I should keep this.");
+				TimDialogAngry.Add("Father always says he wants to \nhave a stuffed animal head hanging \non the wall… I should keep this.");
 		}
 		}
 
@@ -662,17 +662,17 @@ public class Tim : MonoBehaviour {
 
 			//When meeting object
 			if (scroller1Script.running == false) {
-				TimDialogHappy.Add ("Here you go Mr Frog King sir, have a bunny!");
-				TimDialogScared.Add ("Wow, you’re tall. You must play basketball.");
+				TimDialogHappy.Add ("Here you go Mr Frog King sir, \nhave a bunny!");
+				TimDialogScared.Add ("Wow, you’re tall. You \nmust play basketball.");
 				TimDialogAngry.Add ("I challenge you to a stick fight!");
 			}
 
 			//Dialog
 			//happy
 			if (scroller1Script.running == true) {
-				TimDialogHappy.Add("How do trees get on the internet? They log in!");
-				TimDialogScared.Add("What kind of flower grows on your face? Tulips!");
-				TimDialogAngry.Add ("I'm going to smack this stick into something");
+				TimDialogHappy.Add("How do trees get on the \ninternet? They log in!");
+				TimDialogScared.Add("What kind of flower grows \non your face? Tulips!");
+				TimDialogAngry.Add ("I'm going to smack this \nstick into something");
 			}
 		}
 
@@ -683,15 +683,15 @@ public class Tim : MonoBehaviour {
 
 			//When meeting object
 			if (scroller1Script.running == false) {
-				TimDialogHappy.Add ("Here you go Mr Frog King sir, have a bunny!");
-				TimDialogScared.Add ("A dead frog wouldn’t be my first choice, but the diet I’m on require a lot protein.");
-				TimDialogAngry.Add ("I was thinking of saying a punchline, but a punch will do.");
+				TimDialogHappy.Add ("Here you go Mr Frog King sir, \nhave a bunny!");
+				TimDialogScared.Add ("A dead frog wouldn’t be \nmy first choice, but the diet I’m \non require a lot protein.");
+				TimDialogAngry.Add ("I was thinking of saying a \npunchline, but a punch will do.");
 			}
 
 			//Dialog
 			//happy
 			if (scroller1Script.running == true) {
-				TimDialogHappy.Add("How do trees get on the internet? They log in!");
+				TimDialogHappy.Add("How do trees get on the \ninternet? They log in!");
 				TimDialogScared.Add("I should hug a tree.");
 				TimDialogAngry.Add("Was that a wolf howling!?");
 			}
@@ -704,7 +704,7 @@ public class Tim : MonoBehaviour {
 
 			//When meeting object
 			if (scroller1Script.running == false) {
-				TimDialogHappy.Add ("Who are you? Do you have a daughter I can marry?");
+				TimDialogHappy.Add ("Who are you? Do you have \na daughter I can marry?");
 				TimDialogScared.Add ("At least it’s not raining.");
 					TimDialogAngry.Add ("Not again…");
 			}
@@ -712,7 +712,7 @@ public class Tim : MonoBehaviour {
 			//Dialog
 			//happy
 			if (scroller1Script.running == true) {
-				TimDialogHappy.Add("My god, this forest reminds me of an Adele song.");
+				TimDialogHappy.Add("My god, this forest reminds \nme of an Adele song.");
 				TimDialogScared.Add("I should hug a tree.");
 				TimDialogAngry.Add("What time is it?");
 			}
@@ -727,15 +727,15 @@ public class Tim : MonoBehaviour {
 			if (scroller1Script.running == false) {
 				TimDialogHappy.Add ("Take this mushroom.");
 				TimDialogScared.Add ("What a shiny hat you’ve got!");
-				TimDialogAngry.Add ("So I found this sweet mushroom… do you want it?");
+				TimDialogAngry.Add ("So I found this sweet \nmushroom… do you want it?");
 			}
 
 			//Dialog
 			//happy
 			if (scroller1Script.running == true) {
-				TimDialogHappy.Add("I could do this all day long. If only my legs would work properly.");
+				TimDialogHappy.Add("I could do this all day long. \nIf only my legs would work properly.");
 				TimDialogScared.Add("I should hug a tree.");
-				TimDialogAngry.Add("What kind of flower grows on your face? Tulips!");
+				TimDialogAngry.Add("What kind of flower grows \non your face? Tulips!");
 			}
 		}
 
@@ -746,17 +746,17 @@ public class Tim : MonoBehaviour {
 
 			//When meeting object
 			if (scroller1Script.running == false) {
-				TimDialogHappy.Add ("You look hungry. Take this dead rabbit.");
-				TimDialogScared.Add ("I had warts like that once, it was not pretty.");
+				TimDialogHappy.Add ("You look hungry. Take \nthis dead rabbit.");
+				TimDialogScared.Add ("I had warts like that once, \nit was not pretty.");
 				TimDialogAngry.Add ("Prepare to die!");
 			}
 
 			//Dialog
 			//happy
 			if (scroller1Script.running == true) {
-				TimDialogHappy.Add("I had pancakes for dinner last Saturday.");
+				TimDialogHappy.Add("I had pancakes for dinner \nlast Saturday.");
 				TimDialogScared.Add("What is life?");
-				TimDialogAngry.Add("Dang it! I’m so tired of this forest.");
+				TimDialogAngry.Add("Dang it! I’m so tired \nof this forest.");
 			}
 		}
 
@@ -769,7 +769,7 @@ public class Tim : MonoBehaviour {
 			if (scroller1Script.running == false) {
 				TimDialogHappy.Add ("Mushrooms! Yum!");
 				TimDialogHappy.Add("Yes, finally found some mushrooms!");
-				TimDialogScared.Add ("I sure hope these mushrooms aren’t poisonous.");
+				TimDialogScared.Add ("I sure hope these mushrooms \naren’t poisonous.");
 				TimDialogAngry.Add ("Disgusting mushrooms.");
 			}
 
@@ -790,8 +790,8 @@ public class Tim : MonoBehaviour {
 			//When meeting object
 			if (scroller1Script.running == false) {
 				TimDialogHappy.Add ("Such a pretty flower. ");
-				TimDialogScared.Add ("Gosh, I really hope I’m not allergic to this flower.");
-				TimDialogAngry.Add ("I’ve seen prettier flowers, but I guess it’ll do.");
+				TimDialogScared.Add ("Gosh, I really hope I’m not \nallergic to this flower.");
+				TimDialogAngry.Add ("I’ve seen prettier flowers, \nbut I guess it’ll do.");
 			}
 
 			//Dialog
@@ -813,13 +813,13 @@ public class Tim : MonoBehaviour {
 			if (scroller1Script.running == false) {
 				TimDialogHappy.Add ("Such a pretty flower. ");
 				TimDialogScared.Add ("How will I survive the night?");
-				TimDialogAngry.Add ("I’ve seen prettier flowers, but I guess it’ll do.");
+				TimDialogAngry.Add ("I’ve seen prettier flowers, \nbut I guess it’ll do.");
 			}
 
 			//Dialog
 			//happy
 			if (scroller1Script.running == true) {
-				TimDialogHappy.Add("That was by far the most friendly frog I’ve ever met. Today.");
+				TimDialogHappy.Add("That was by far the most friendly \nfrog I’ve ever met. Today.");
 				TimDialogScared.Add("I wish I was a turtle.");
 				TimDialogAngry.Add("How big is this forest!?");
 			}
@@ -836,7 +836,7 @@ public class Tim : MonoBehaviour {
 			if (scroller1Script.running == false) {
 				TimDialogHappy.Add ("This is a good sword.");
 				TimDialogScared.Add("I like cats… oh, I also like tacos.");
-				TimDialogAngry.Add("A sword! Weapon of murder. Swords makes my blood pump with anger.");
+				TimDialogAngry.Add("A sword! Weapon of murder. \nSwords makes my blood pump with anger.");
 			}
 
 			//Dialog
@@ -844,7 +844,7 @@ public class Tim : MonoBehaviour {
 			if (scroller1Script.running == true) {
 				TimDialogHappy.Add("I’ve never felt so alive before.");
 				TimDialogScared.Add("Looks like the frog dropped something.");
-				TimDialogAngry.Add("Sometimes, violence is the only option. Just ask Wolverine from X-Men.");
+				TimDialogAngry.Add("Sometimes, violence is the only \noption. Just ask Wolverine from X-Men.");
 			}
 		}
 
@@ -857,7 +857,7 @@ public class Tim : MonoBehaviour {
 			if (scroller1Script.running == false) {
 				TimDialogHappy.Add ("This is a good sword.");
 				TimDialogScared.Add("Looks like the frog dropped something.");
-				TimDialogAngry.Add("A sword! Weapon of murder. Swords makes my blood pump with anger.");
+				TimDialogAngry.Add("A sword! Weapon of murder. \nSwords makes my blood pump with anger.");
 			}
 
 			//Dialog
@@ -865,7 +865,7 @@ public class Tim : MonoBehaviour {
 			if (scroller1Script.running == true) {
 				TimDialogHappy.Add("I wish I was a turtle.");
 				TimDialogScared.Add("Looks like the frog dropped something.");
-				TimDialogAngry.Add("Didn’t your mother teach you not to eat spotted mushrooms!?");
+				TimDialogAngry.Add("Didn’t your mother teach you\n not to eat spotted mushrooms!?");
 			}
 		}
 
@@ -878,7 +878,7 @@ public class Tim : MonoBehaviour {
 			if (scroller1Script.running == false) {
 				TimDialogHappy.Add ("This is a good sword.");
 				TimDialogScared.Add("Looks like the raven dropped something.");
-				TimDialogAngry.Add("A sword! Weapon of murder. Swords makes my blood pump with anger.");
+				TimDialogAngry.Add("A sword! Weapon of murder. \nSwords makes my blood pump with anger.");
 			}
 
 			//Dialog
@@ -898,14 +898,14 @@ public class Tim : MonoBehaviour {
 			//When meeting object
 			if (scroller1Script.running == false) {
 				TimDialogHappy.Add("Take this flower, it smells pretty good.");
-				TimDialogScared.Add("Wow, you have a nasty breath. Try brushing your teeth sometime.");
+				TimDialogScared.Add("Wow, you have a nasty breath. \nTry brushing your teeth sometime.");
 				TimDialogAngry.Add ("Eat my stick!");
 			}
 
 			//Dialog
 			//happy
 			if (scroller1Script.running == true) {
-				TimDialogHappy.Add ("My god, this forest reminds me of an Adele song.");
+				TimDialogHappy.Add ("My god, this forest reminds\n me of an Adele song.");
 					TimDialogScared.Add("Was that a wolf howling!?");
 					TimDialogAngry.Add ("Holy fishsticks!");
 			}
@@ -918,7 +918,7 @@ public class Tim : MonoBehaviour {
 
 			//When meeting object
 			if (scroller1Script.running == false) {
-				TimDialogHappy.Add ("Let’s be friends. I can make you a bead necklace if you accept.");
+				TimDialogHappy.Add ("Let’s be friends. I can make you \na bead necklace if you accept.");
 				TimDialogScared.Add("I can’t decide if I’m scared of you or not!");
 				TimDialogAngry.Add ("Prepare to die!");
 			}
@@ -926,7 +926,7 @@ public class Tim : MonoBehaviour {
 			//Dialog
 			//happy
 			if (scroller1Script.running == true) {
-				TimDialogHappy.Add ("This place look like something out of my favorite cartoon.");
+				TimDialogHappy.Add ("This place look like something \nout of my favorite cartoon.");
 				TimDialogScared.Add("I had pancakes for dinner last Saturday.");
 				TimDialogAngry.Add("How the hell do I get home!?");
 			}
@@ -939,7 +939,7 @@ public class Tim : MonoBehaviour {
 
 			//When meeting object
 			if (scroller1Script.running == false) {
-				TimDialogHappy.Add("Do you want a flower? I just got one, actually.");
+				TimDialogHappy.Add("Do you want a flower? \nI just got one, actually.");
 				TimDialogScared.Add("GHAAA, a snake!");
 				TimDialogAngry.Add ("I will kill you with my bare hands!");
 			}
@@ -960,8 +960,8 @@ public class Tim : MonoBehaviour {
 
 			//When meeting object
 			if (scroller1Script.running == false) {
-				TimDialogHappy.Add ("You look like you need a friend. How about it?");
-				TimDialogScared.Add ("Don’t be mad, I’m sure we can work things out.");
+				TimDialogHappy.Add ("You look like you need \na friend. How about it?");
+				TimDialogScared.Add ("Don’t be mad, I’m sure \nwe can work things out.");
 				TimDialogAngry.Add ("I challenge you, insect!");
 			}
 
@@ -981,8 +981,8 @@ public class Tim : MonoBehaviour {
 
 			//When meeting object
 			if (scroller1Script.running == false) {
-				TimDialogHappy.Add ("You look starved. Care for some frog’s legs?");
-				TimDialogScared.Add ("I’m not scared of you, dragon or snake or whatever you are! At least, I don’t think I am.");
+				TimDialogHappy.Add ("You look starved. Care for \nsome frog’s legs?");
+				TimDialogScared.Add ("I’m not scared of you, dragon \nor snake or whatever you are! \nAt least, I don’t think I am.");
 					TimDialogAngry.Add ("Prepare to die, hell-spawn!");
 			}
 
@@ -990,7 +990,7 @@ public class Tim : MonoBehaviour {
 					//happy
 			if (scroller1Script.running == true) {
 				TimDialogHappy.Add ("This frog is quite heavy.");
-				TimDialogScared.Add("Hmm… What did the raven say about frog’s legs again? Better keep the frog.");
+				TimDialogScared.Add("Hmm… What did the raven \nsay about frog’s legs again? \nBetter keep the frog.");
 					TimDialogAngry.Add("How big is this forest!?");
 			}
 		}
