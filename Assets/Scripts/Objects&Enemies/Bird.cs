@@ -8,6 +8,8 @@ public class Bird : MonoBehaviour {
 	GameObject scroller1;
 	GameObject scroller2;
 	GameObject tim;
+	string ravenDialog = "";
+	string speak;
 	Tim timScript;
 	bool noActionTaken = true;
 
@@ -45,6 +47,8 @@ public class Bird : MonoBehaviour {
 			if (state == "Raven1") {
 				if (timScript.mood < 5) {
 					print ("Tim och kaninen möter en korp. Korpen säger: -Skogens kung är ensam. Korpen flyger iväg");
+					ravenDialog = "Skogens kung är ensam";
+					timScript.pratbubblaAndra.SetActive (true);
 					StartCoroutine (waitForAnim (animationTime));
 					noActionTaken = false;
 					timScript.gameState = "Stick2";
@@ -52,6 +56,7 @@ public class Bird : MonoBehaviour {
 
 				if (timScript.mood >= 5) {
 					print ("Tim och kaninen möter en korp. Korpen säger: -Skogens kung är ensam. Korpen flyger iväg");
+					ravenDialog = "Skogens kung är ensam";
 					StartCoroutine (waitForAnim (animationTime));
 					noActionTaken = false;
 					timScript.gameState = "Stick2";
@@ -61,6 +66,7 @@ public class Bird : MonoBehaviour {
 			if (state == "Raven2") {
 				if (timScript.mood < 5) {
 					print ("Tim möter en korp. Korpen säger: - Ormen älskar att äta grodlår. Tim kastar sin sista sten på korpen, som flyger iväg. I sin brådska tappar korpen sitt svärd på marken. Tim plockar upp svärdet.");
+					ravenDialog = "Ormen älskar att äta grodlår";
 					timScript.rockThrow.Play ("berryThrow");
 					StartCoroutine (waitForAnim (animationTime));
 					noActionTaken = false;
@@ -72,6 +78,7 @@ public class Bird : MonoBehaviour {
 				if (timScript.mood >= 5) {
 					print ("Tim möter en korp. Korpen säger: - Ormen älskar att äta grodlår. Tim kastar sin sista sten på korpen, som flyger iväg. I sin brådska tappar korpen sitt svärd på marken. Tim plockar upp svärdet.");
 					timScript.rockThrow.Play ("berryThrow");
+					ravenDialog = "Ormen älskar att äta grodlår";
 					StartCoroutine (waitForAnim (animationTime));
 					noActionTaken = false;
 					timScript.inventory.Remove ("Stone2");
@@ -91,10 +98,12 @@ public class Bird : MonoBehaviour {
 	void CheckGameState(){
 		state = tim.GetComponent<Tim> ().gameState;
 	}
+		
 
 	IEnumerator waitForAnim(float waitTime){
 		yield return new WaitForSeconds (waitTime);
 		print ("Animation Done");
+		timScript.pratbubblaAndra.SetActive (false);
 		scroller.GetComponent<ScrollingBackground> ().startScroll ();
 		scroller1.GetComponent<ScrollingBackground> ().startScroll ();
 		scroller2.GetComponent<ScrollingBackground> ().startScroll ();
@@ -106,6 +115,18 @@ public class Bird : MonoBehaviour {
 		yield return new WaitForSeconds (waitTime);
 		if(noActionTaken == true){
 			Act ();
+			StartCoroutine (waitForBubble(4.0f));
 		}
 	}
+
+	IEnumerator waitForBubble(float waitTime){
+		yield return new WaitForSeconds (waitTime);
+		timScript.pratbubblaAndra.SetActive (true);
+		speak = ravenDialog;
+		}
+		
+	void OnGUI(){
+		GUI.Label(new Rect(790,240,200,190), speak , timScript.style);
+	}
+
 }

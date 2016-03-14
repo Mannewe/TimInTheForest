@@ -100,6 +100,7 @@ public class FrogKing : MonoBehaviour {
 			if (state == "Frog4") {
 				if (timScript.mood < 5) {
 					print ("Tim ger grodan den fina svampen. Grodan uppskattar detta så mycket att han tar Tim till sin personliga slav. ");
+					timScript.throwBadMushroom.Play ("berryThrow");
 					StartCoroutine (waitForAnim (animationTime));
 					timScript.inventory.Remove ("MushroomGood");
 					noActionTaken = false;
@@ -108,6 +109,7 @@ public class FrogKing : MonoBehaviour {
 
 				if (timScript.mood >= 5) {
 					print ("Tim ger grodan den giftiga svampen. Grodan dör och tappar sitt svärd, som Tim plockar upp.");
+					timScript.throwGoodMushroom.Play ("berryThrow");
 					StartCoroutine (waitForAnim (animationTime));
 					timScript.inventory.Remove ("MushroomBad");
 					timScript.inventory.Add ("Sword");
@@ -119,6 +121,7 @@ public class FrogKing : MonoBehaviour {
 			if (state == "Frog5") {
 				if (timScript.mood < 5) {
 					print ("Tim ger grodan den döda kaninen. Grodan uppskattar gåvan, och de två blir kompisar. Grodan visar Tim vägen ut ur skogen. ");
+					timScript.throwDeadRabbit.Play ("berryThrow");
 					StartCoroutine (waitForAnim (animationTime));
 					timScript.inventory.Remove ("RabbitDead");
 					noActionTaken = false;

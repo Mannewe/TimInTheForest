@@ -26,6 +26,9 @@ public class Tim : MonoBehaviour {
 	//Animations
 	public Animation animScared;
 	public Animation rockThrow;
+	public Animation throwDeadRabbit;
+	public Animation throwBadMushroom;
+	public Animation throwGoodMushroom;
 
 	//Dialog lists
 	public ArrayList TimDialogHappy;
@@ -44,13 +47,16 @@ public class Tim : MonoBehaviour {
 	GameObject FrogDead;
 	GameObject Flower;
 	GameObject startbox;
-	GameObject pratbubblaAndra;
+	public GameObject pratbubblaAndra;
 
 	//animationObjects
 	public GameObject animSword;
 	public GameObject bunnyFollower;
 	public GameObject animRock;
 	public GameObject animStick;
+	public GameObject animDeadRabbit;
+	public GameObject animKantarell;
+	public GameObject animFlugsvamp;
 
 	//Background
 	GameObject scroller1;
@@ -65,7 +71,7 @@ public class Tim : MonoBehaviour {
 	string dialoger;
 	string startText = "Tim is lost in the forest, affect his mood by \n screaming or whispering to him and he will do the rest \n \n Press S to start";
 
-	GUIStyle style = new GUIStyle();
+	public GUIStyle style = new GUIStyle();
 	GUIStyle style2 = new GUIStyle();
 
 	//Is Tim speaking?
@@ -108,7 +114,13 @@ public class Tim : MonoBehaviour {
 		animRock = GameObject.FindWithTag ("animRock");
 		animSword = GameObject.FindWithTag ("animSword");
 		animStick = GameObject.FindWithTag ("animStick");
+		animDeadRabbit = GameObject.FindWithTag ("animDeadRabbit");
+		animFlugsvamp = GameObject.FindWithTag ("animFlugsvamp");
+		animKantarell = GameObject.FindWithTag ("animKantarell");
+		throwBadMushroom = animFlugsvamp.GetComponent<Animation> ();
+		throwGoodMushroom = animKantarell.GetComponent<Animation> ();
 		rockThrow = animRock.GetComponent<Animation> ();
+		throwDeadRabbit = animDeadRabbit.GetComponent<Animation> ();
 
 		moodBar = new GameObject[11];
 
@@ -470,7 +482,7 @@ public class Tim : MonoBehaviour {
 
 	void OnGUI(){
 		if(speak == true){
-		GUI.Label(new Rect(300,200,200,190), dialoger , style);
+			GUI.Label(new Rect(300,200,200,190), dialoger , style);
 		}
 //		if(gameState == "Start"){
 //			GUI.Box (new Rect(Screen.width/2 - 450,100,200,200), startText, style2);
@@ -1002,7 +1014,7 @@ public class Tim : MonoBehaviour {
 			//startbox.SetActive (false);
 			animStartSign.Play ("endSign");
 			started = true;
-			gameState = "Berries";
+			gameState = "Frog4";
 
 		}
 	}
@@ -1012,4 +1024,6 @@ public class Tim : MonoBehaviour {
 		pratBubbla.SetActive (false);
 		speak = false;
 	}
+		
+
 }
