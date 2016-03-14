@@ -47,6 +47,7 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\Dialog.cs" />
      <Compile Include="Assets\Scripts\MicrophoneInput.cs" />
+     <Compile Include="Assets\Scripts\MoodChange.cs" />
      <Compile Include="Assets\Scripts\Objects&amp;Enemies\Bird.cs" />
      <Compile Include="Assets\Scripts\Objects&amp;Enemies\Blomma.cs" />
      <Compile Include="Assets\Scripts\Objects&amp;Enemies\Bunny.cs" />
@@ -60,6 +61,7 @@
      <Compile Include="Assets\Scripts\Objects&amp;Enemies\Sword.cs" />
      <Compile Include="Assets\Scripts\ScrollingBackground.cs" />
      <Compile Include="Assets\Scripts\Spawner.cs" />
+     <Compile Include="Assets\Scripts\StoneScript.cs" />
      <Compile Include="Assets\Scripts\Tim.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
