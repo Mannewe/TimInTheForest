@@ -8,6 +8,10 @@ public class FrogKing : MonoBehaviour {
 	GameObject scroller1;
 	GameObject scroller2;
 	GameObject tim;
+	GameObject bunny;
+	Animation animBunny;
+	string frogDialog = "";
+	string speak;
 
 	Tim timScript;
 	bool noActionTaken = true;
@@ -24,6 +28,8 @@ public class FrogKing : MonoBehaviour {
 		scroller1 = GameObject.FindWithTag ("scroller2");
 		scroller2 = GameObject.FindWithTag ("scroller3");
 		tim = GameObject.FindWithTag ("tim");
+		bunny = GameObject.FindWithTag ("BunnyFollower");
+		animBunny = bunny.GetComponent<Animation> ();
 		timScript = tim.GetComponent<Tim> ();
 	}
 
@@ -45,15 +51,18 @@ public class FrogKing : MonoBehaviour {
 			if (state == "Frog1") {
 				if (timScript.mood < 5) {
 					print ("Tim erbjuder grodan att få kaninen som kompis. Grodan blir överlycklig och ger Tim en blomma som tack.");
+					frogDialog = "Take this flower as a token of our friendship";
+					animBunny.Play ("giveLivingRabbit");
 					timScript.inventory.Add ("Flower");
 					StartCoroutine (waitForAnim (animationTime));
-					timScript.bunnyFollower.SetActive (false);
+					//timScript.bunnyFollower.SetActive (false);
 					noActionTaken = false;
 					timScript.gameState = "Flower1";
 				}
 
 				if (timScript.mood >= 5) {
 					print ("Tim slår grodan med sin pinne. Grodan flyr från Tims vrede, och tappar sitt svärd.");
+					frogDialog = "Ah, stop! Don’t hurt me! Get away from me!";
 					timScript.animStick.SetActive (true);
 					StartCoroutine (waitForAnim (animationTime));
 					timScript.animScared.Play ("Killstuff");
@@ -65,6 +74,7 @@ public class FrogKing : MonoBehaviour {
 
 			if (state == "Frog2") {
 				if (timScript.mood < 5) {
+					frogDialog = "Finally a friend, thank you stranger! \n Take this flower as a token of our friendship";
 					print ("Tim erbjuder grodan att få kaninen som kompis. Grodan blir överlycklig och ger Tim en blomma som tack.");
 					StartCoroutine (waitForAnim (animationTime));
 					timScript.inventory.Add ("Flower");
@@ -74,6 +84,7 @@ public class FrogKing : MonoBehaviour {
 				}
 
 				if (timScript.mood >= 5) {
+					frogDialog = "So you wanna fight, huh? I’ll show you!";
 					print ("Tim brottas med grodan, men förlorar. Grodan tar Tim till sin personliga slav.");
 					StartCoroutine (waitForAnim (animationTime));
 					noActionTaken = false;
@@ -83,6 +94,7 @@ public class FrogKing : MonoBehaviour {
 
 			if (state == "Frog3") {
 				if (timScript.mood < 5) {
+					frogDialog = "You’re my slave now. S for sockdrying,\n L for laundry, A for assmassage,\n V for victim, E for eat my shit";
 					print ("Då Tim inte har någonting att ge grodan, gör grodan Tim till sin personliga slav. ");
 					StartCoroutine (waitForAnim (animationTime));
 					noActionTaken = false;
@@ -90,6 +102,7 @@ public class FrogKing : MonoBehaviour {
 				}
 
 				if (timScript.mood >= 5) {
+					frogDialog = "How convenient, my last slave just died. \n You’ll be a worthy replacement";
 					print ("Då Tim inte har någonting att ge grodan, gör grodan Tim till sin personliga slav.");
 					StartCoroutine (waitForAnim (animationTime));
 					noActionTaken = false;
@@ -99,6 +112,7 @@ public class FrogKing : MonoBehaviour {
 
 			if (state == "Frog4") {
 				if (timScript.mood < 5) {
+					frogDialog = "Such a lovely mushroom, you’ll be my personal mushroom picker!";
 					print ("Tim ger grodan den fina svampen. Grodan uppskattar detta så mycket att han tar Tim till sin personliga slav. ");
 					timScript.throwGoodMushroom.Play ("berryThrow");
 					StartCoroutine (waitForAnim (animationTime));
@@ -108,6 +122,7 @@ public class FrogKing : MonoBehaviour {
 				}
 
 				if (timScript.mood >= 5) {
+					frogDialog = "Worth… it…";
 					print ("Tim ger grodan den giftiga svampen. Grodan dör och tappar sitt svärd, som Tim plockar upp.");
 					timScript.throwBadMushroom.Play ("berryThrow");
 					StartCoroutine (waitForAnim (animationTime));
@@ -120,6 +135,7 @@ public class FrogKing : MonoBehaviour {
 
 			if (state == "Frog5") {
 				if (timScript.mood < 5) {
+					frogDialog = "How nice to finally get some company! I’ll show you the way out of the forest.";
 					print ("Tim ger grodan den döda kaninen. Grodan uppskattar gåvan, och de två blir kompisar. Grodan visar Tim vägen ut ur skogen. ");
 					timScript.throwDeadRabbit.Play ("berryThrow");
 					StartCoroutine (waitForAnim (animationTime));
@@ -130,6 +146,7 @@ public class FrogKing : MonoBehaviour {
 
 				if (timScript.mood >= 5) {
 					//swordPos = -1f;
+					frogDialog = "Fiona, forgive me…";
 					print ("Tim dräper grodan med sitt svärd. Tim tar grodans ledbrutna kropp och lägger den i sin ryggsäck.");
 					timScript.animSword.SetActive (true);
 					StartCoroutine (waitForAnim (animationTime));
@@ -146,6 +163,7 @@ public class FrogKing : MonoBehaviour {
 	void Destroy(){
 		if (gameObject.activeSelf == true) {
 			gameObject.SetActive (false);
+			timScript.pratbubblaAndra2.SetActive (false);
 		}
 	}
 
@@ -156,6 +174,7 @@ public class FrogKing : MonoBehaviour {
 	IEnumerator waitForAnim(float waitTime){
 		yield return new WaitForSeconds (waitTime);
 		print ("Animation Done");
+		timScript.bunnyFollower.SetActive (false);
 		if(timScript.animSword.activeSelf == true){
 			timScript.animSword.SetActive (false);
 		}
@@ -173,6 +192,17 @@ public class FrogKing : MonoBehaviour {
 		yield return new WaitForSeconds (waitTime);
 		if(noActionTaken == true){
 			Act ();
+			StartCoroutine (waitForBubble(4.0f));
 		}
+	}
+
+	IEnumerator waitForBubble(float waitTime){
+		yield return new WaitForSeconds (waitTime);
+		timScript.pratbubblaAndra2.SetActive (true);
+		speak = frogDialog;
+	}
+
+	void OnGUI(){
+		GUI.Label(new Rect(700,50,200,190), speak , timScript.style);
 	}
 }

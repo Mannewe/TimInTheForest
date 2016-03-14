@@ -47,7 +47,7 @@ public class Bird : MonoBehaviour {
 			if (state == "Raven1") {
 				if (timScript.mood < 5) {
 					print ("Tim och kaninen möter en korp. Korpen säger: -Skogens kung är ensam. Korpen flyger iväg");
-					ravenDialog = "Skogens kung är ensam";
+					ravenDialog = "The King of the forest is lonely.";
 					timScript.pratbubblaAndra.SetActive (true);
 					StartCoroutine (waitForAnim (animationTime));
 					noActionTaken = false;
@@ -56,7 +56,7 @@ public class Bird : MonoBehaviour {
 
 				if (timScript.mood >= 5) {
 					print ("Tim och kaninen möter en korp. Korpen säger: -Skogens kung är ensam. Korpen flyger iväg");
-					ravenDialog = "Skogens kung är ensam";
+					ravenDialog = "The King of the forest is \n in need of a friend.";
 					StartCoroutine (waitForAnim (animationTime));
 					noActionTaken = false;
 					timScript.gameState = "Stick2";
@@ -66,7 +66,7 @@ public class Bird : MonoBehaviour {
 			if (state == "Raven2") {
 				if (timScript.mood < 5) {
 					print ("Tim möter en korp. Korpen säger: - Ormen älskar att äta grodlår. Tim kastar sin sista sten på korpen, som flyger iväg. I sin brådska tappar korpen sitt svärd på marken. Tim plockar upp svärdet.");
-					ravenDialog = "Ormen älskar att äta grodlår";
+					ravenDialog = "Snakes loves to eat frogs’ legs.";
 					timScript.rockThrow.Play ("berryThrow");
 					StartCoroutine (waitForAnim (animationTime));
 					noActionTaken = false;
@@ -78,7 +78,7 @@ public class Bird : MonoBehaviour {
 				if (timScript.mood >= 5) {
 					print ("Tim möter en korp. Korpen säger: - Ormen älskar att äta grodlår. Tim kastar sin sista sten på korpen, som flyger iväg. I sin brådska tappar korpen sitt svärd på marken. Tim plockar upp svärdet.");
 					timScript.rockThrow.Play ("berryThrow");
-					ravenDialog = "Ormen älskar att äta grodlår";
+					ravenDialog = "If you are a frog, beware \n of the hungry Dragonsnake.";
 					StartCoroutine (waitForAnim (animationTime));
 					noActionTaken = false;
 					timScript.inventory.Remove ("Stone2");

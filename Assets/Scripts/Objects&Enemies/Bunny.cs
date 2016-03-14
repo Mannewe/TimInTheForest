@@ -11,7 +11,7 @@ public class Bunny : MonoBehaviour {
 	GameObject berries;
 	Animation toss;
 	Tim timScript;
-	Animation bunnyAnims;
+	public Animation bunnyAnims;
 	bool noActionTaken = true;
 
 

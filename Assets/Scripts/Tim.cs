@@ -48,6 +48,7 @@ public class Tim : MonoBehaviour {
 	GameObject Flower;
 	GameObject startbox;
 	public GameObject pratbubblaAndra;
+	public GameObject pratbubblaAndra2;
 
 	//animationObjects
 	public GameObject animSword;
@@ -101,6 +102,7 @@ public class Tim : MonoBehaviour {
 		rightArm = GameObject.FindWithTag ("RightArm");
 
 		pratbubblaAndra = GameObject.FindWithTag ("pratbubblaAndra");
+		pratbubblaAndra2 = GameObject.FindWithTag ("pratbubblaAndra2");
 
 		leftArmAnim = leftArm.GetComponent<Animation> ();
 		leftLegAnim = leftLeg.GetComponent<Animation> ();
@@ -159,12 +161,13 @@ public class Tim : MonoBehaviour {
 		Bunny.SetActive (false);
 		MushroomBad.SetActive (false);
 		MushroomGood.SetActive (false);
-		bunnyFollower.SetActive (false);
+		//bunnyFollower.SetActive (false);
 		Stone1.SetActive (false);
 		Stone2.SetActive (false);
 		FrogDead.SetActive (false);
 		Flower.SetActive (false);
 		pratbubblaAndra.SetActive (false);
+		pratbubblaAndra2.SetActive (false);
 
 		animSword.SetActive (false);
 		animStick.SetActive (false);
@@ -308,7 +311,7 @@ public class Tim : MonoBehaviour {
 	public void TimTalk(){
 
 		if(mood == 0 && scroller1Script.running == true){
-			dialoger = "Wow, this place is really beautiful. I think I’ll stay here all day.";
+			dialoger = "Wow, this place is really beautiful. \n I think I’ll stay here all day.";
 			scroller1Script.speed = 0f;
 			scroller2Script.speed = 0f;
 			scroller3Script.speed = 0f;
@@ -359,7 +362,7 @@ public class Tim : MonoBehaviour {
 			}
 		}
 		if (mood == 10 && scroller1Script.running == true) {
-			dialoger = "Stop yelling at me! I won’t go any further until you stop yelling!";
+			dialoger = "Stop yelling at me! \n I won’t go any further \n until you stop yelling!";
 			scroller1Script.speed = 0f;
 			scroller2Script.speed = 0f;
 			scroller3Script.speed = 0f;
