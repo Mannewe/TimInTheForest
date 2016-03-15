@@ -29,6 +29,7 @@ public class Tim : MonoBehaviour {
 	public Animation throwDeadRabbit;
 	public Animation throwBadMushroom;
 	public Animation throwGoodMushroom;
+	public Animation bunnyAnim;
 
 	//Dialog lists
 	public ArrayList TimDialogHappy;
@@ -124,6 +125,7 @@ public class Tim : MonoBehaviour {
 		rockThrow = animRock.GetComponent<Animation> ();
 		throwDeadRabbit = animDeadRabbit.GetComponent<Animation> ();
 
+
 		moodBar = new GameObject[11];
 
 		aSources = new AudioSource[3];
@@ -154,6 +156,7 @@ public class Tim : MonoBehaviour {
 		bunnyFollower = GameObject.FindWithTag ("BunnyFollower");
 		startbox = GameObject.FindWithTag ("Startbox");
 		animStartSign = startbox.GetComponent<Animation> ();
+		bunnyAnim = bunnyFollower.GetComponent<Animation> ();
 
 		pinne.SetActive (false);
 		s.SetActive (false);
@@ -161,7 +164,7 @@ public class Tim : MonoBehaviour {
 		Bunny.SetActive (false);
 		MushroomBad.SetActive (false);
 		MushroomGood.SetActive (false);
-		//bunnyFollower.SetActive (false);
+		bunnyFollower.SetActive (false);
 		Stone1.SetActive (false);
 		Stone2.SetActive (false);
 		FrogDead.SetActive (false);

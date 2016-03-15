@@ -8,8 +8,6 @@ public class FrogKing : MonoBehaviour {
 	GameObject scroller1;
 	GameObject scroller2;
 	GameObject tim;
-	GameObject bunny;
-	Animation animBunny;
 	string frogDialog = "";
 	string speak;
 
@@ -28,8 +26,6 @@ public class FrogKing : MonoBehaviour {
 		scroller1 = GameObject.FindWithTag ("scroller2");
 		scroller2 = GameObject.FindWithTag ("scroller3");
 		tim = GameObject.FindWithTag ("tim");
-		bunny = GameObject.FindWithTag ("BunnyFollower");
-		animBunny = bunny.GetComponent<Animation> ();
 		timScript = tim.GetComponent<Tim> ();
 	}
 
@@ -51,8 +47,8 @@ public class FrogKing : MonoBehaviour {
 			if (state == "Frog1") {
 				if (timScript.mood < 5) {
 					print ("Tim erbjuder grodan att få kaninen som kompis. Grodan blir överlycklig och ger Tim en blomma som tack.");
-					frogDialog = "Take this flower as a token of our friendship";
-					animBunny.Play ("giveLivingRabbit");
+					frogDialog = "Take this flower as a \n token of our friendship";
+					timScript.bunnyAnim.Play ("giveLivingRabbit");
 					timScript.inventory.Add ("Flower");
 					StartCoroutine (waitForAnim (animationTime));
 					//timScript.bunnyFollower.SetActive (false);
@@ -112,13 +108,13 @@ public class FrogKing : MonoBehaviour {
 
 			if (state == "Frog4") {
 				if (timScript.mood < 5) {
-					frogDialog = "Such a lovely mushroom, you’ll be my personal mushroom picker!";
+					frogDialog = "Such a lovely mushroom, you’ll \n be my personal mushroom picker!";
 					print ("Tim ger grodan den fina svampen. Grodan uppskattar detta så mycket att han tar Tim till sin personliga slav. ");
 					timScript.throwGoodMushroom.Play ("berryThrow");
 					StartCoroutine (waitForAnim (animationTime));
 					timScript.inventory.Remove ("MushroomGood");
 					noActionTaken = false;
-					timScript.gameState = "Slave2";
+					timScript.gameState = "Slave3";
 				}
 
 				if (timScript.mood >= 5) {
@@ -135,7 +131,7 @@ public class FrogKing : MonoBehaviour {
 
 			if (state == "Frog5") {
 				if (timScript.mood < 5) {
-					frogDialog = "How nice to finally get some company! I’ll show you the way out of the forest.";
+					frogDialog = "How nice to finally get some company! \n I’ll show you the way out of the forest.";
 					print ("Tim ger grodan den döda kaninen. Grodan uppskattar gåvan, och de två blir kompisar. Grodan visar Tim vägen ut ur skogen. ");
 					timScript.throwDeadRabbit.Play ("berryThrow");
 					StartCoroutine (waitForAnim (animationTime));
@@ -201,6 +197,7 @@ public class FrogKing : MonoBehaviour {
 		timScript.pratbubblaAndra2.SetActive (true);
 		speak = frogDialog;
 	}
+		
 
 	void OnGUI(){
 		GUI.Label(new Rect(700,50,200,190), speak , timScript.style);

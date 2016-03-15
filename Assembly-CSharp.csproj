@@ -45,7 +45,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\BackToStart.cs" />
      <Compile Include="Assets\Scripts\Dialog.cs" />
+     <Compile Include="Assets\Scripts\Fade.cs" />
      <Compile Include="Assets\Scripts\MicrophoneInput.cs" />
      <Compile Include="Assets\Scripts\MoodChange.cs" />
      <Compile Include="Assets\Scripts\Objects&amp;Enemies\Bird.cs" />
@@ -59,6 +61,7 @@
      <Compile Include="Assets\Scripts\Objects&amp;Enemies\Snake.cs" />
      <Compile Include="Assets\Scripts\Objects&amp;Enemies\Stick.cs" />
      <Compile Include="Assets\Scripts\Objects&amp;Enemies\Sword.cs" />
+     <Compile Include="Assets\Scripts\SceneChanger.cs" />
      <Compile Include="Assets\Scripts\ScrollingBackground.cs" />
      <Compile Include="Assets\Scripts\Spawner.cs" />
      <Compile Include="Assets\Scripts\StoneScript.cs" />

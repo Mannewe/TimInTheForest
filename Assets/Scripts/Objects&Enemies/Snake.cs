@@ -172,4 +172,6 @@ public class Snake : MonoBehaviour {
 			Act ();
 		}
 	}
+
+
 }

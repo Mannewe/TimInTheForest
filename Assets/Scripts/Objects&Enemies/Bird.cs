@@ -71,7 +71,6 @@ public class Bird : MonoBehaviour {
 					StartCoroutine (waitForAnim (animationTime));
 					noActionTaken = false;
 					timScript.inventory.Remove ("Stone2");
-					timScript.inventory.Add ("Sword");
 					timScript.gameState = "Sword3";
 				}
 
@@ -82,7 +81,6 @@ public class Bird : MonoBehaviour {
 					StartCoroutine (waitForAnim (animationTime));
 					noActionTaken = false;
 					timScript.inventory.Remove ("Stone2");
-					timScript.inventory.Add ("Sword");
 					timScript.gameState = "Sword3";
 				}
 			}
