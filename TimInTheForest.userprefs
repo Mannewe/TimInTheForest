@@ -2,10 +2,10 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Tim.cs">
     <Files>
-      <File FileName="Assets/Scripts/Tim.cs" Line="993" Column="83" />
-      <File FileName="Assets/Scripts/MicrophoneInput.cs" Line="16" Column="42" />
-      <File FileName="Assets/Scripts/MoodChange.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Objects&amp;Enemies/Shrubbery.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Tim.cs" Line="1023" Column="24" />
+      <File FileName="Assets/Scripts/SceneChanger.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/ScrollingBackground.cs" Line="94" Column="36" />
+      <File FileName="Assets/Scripts/Objects&amp;Enemies/Bird.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
