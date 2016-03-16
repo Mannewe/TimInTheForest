@@ -10,6 +10,11 @@ public class FrogKing : MonoBehaviour {
 	GameObject tim;
 	string frogDialog = "";
 	string speak;
+	double screenWidth;
+	double screenHeight;
+
+	float width;
+	float height;
 
 	Tim timScript;
 	bool noActionTaken = true;
@@ -27,6 +32,12 @@ public class FrogKing : MonoBehaviour {
 		scroller2 = GameObject.FindWithTag ("scroller3");
 		tim = GameObject.FindWithTag ("tim");
 		timScript = tim.GetComponent<Tim> ();
+
+		screenWidth = Screen.width/1.8;
+		screenHeight = Screen.height/2;
+
+		height = (float)screenHeight;
+		width = (float)screenWidth;
 	}
 
 	// Update is called once per frame
@@ -49,7 +60,6 @@ public class FrogKing : MonoBehaviour {
 					print ("Tim erbjuder grodan att få kaninen som kompis. Grodan blir överlycklig och ger Tim en blomma som tack.");
 					frogDialog = "Take this flower as a \n token of our friendship";
 					timScript.bunnyAnim.Play ("giveLivingRabbit");
-					timScript.inventory.Add ("Flower");
 					StartCoroutine (waitForAnim (animationTime));
 					//timScript.bunnyFollower.SetActive (false);
 					noActionTaken = false;
@@ -73,7 +83,6 @@ public class FrogKing : MonoBehaviour {
 					frogDialog = "Finally a friend, thank you stranger! \n Take this flower as a token of our friendship";
 					print ("Tim erbjuder grodan att få kaninen som kompis. Grodan blir överlycklig och ger Tim en blomma som tack.");
 					StartCoroutine (waitForAnim (animationTime));
-					timScript.inventory.Add ("Flower");
 					timScript.bunnyFollower.SetActive (false);
 					noActionTaken = false;
 					timScript.gameState = "Flower2";
@@ -82,6 +91,7 @@ public class FrogKing : MonoBehaviour {
 				if (timScript.mood >= 5) {
 					frogDialog = "So you wanna fight, huh? I’ll show you!";
 					print ("Tim brottas med grodan, men förlorar. Grodan tar Tim till sin personliga slav.");
+					timScript.animScared.Play ("Killstuff");
 					StartCoroutine (waitForAnim (animationTime));
 					noActionTaken = false;
 					timScript.gameState = "Slave1";
@@ -123,7 +133,6 @@ public class FrogKing : MonoBehaviour {
 					timScript.throwBadMushroom.Play ("berryThrow");
 					StartCoroutine (waitForAnim (animationTime));
 					timScript.inventory.Remove ("MushroomBad");
-					timScript.inventory.Add ("Sword");
 					noActionTaken = false;
 					timScript.gameState = "Sword2";
 				}
@@ -200,6 +209,6 @@ public class FrogKing : MonoBehaviour {
 		
 
 	void OnGUI(){
-		GUI.Label(new Rect(700,50,200,190), speak , timScript.style);
+		GUI.Label(new Rect(700,60,200,190), speak , timScript.style);                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
 	}
 }

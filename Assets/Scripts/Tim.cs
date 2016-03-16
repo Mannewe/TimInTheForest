@@ -13,6 +13,10 @@ public class Tim : MonoBehaviour {
 	Animation animStartSign;
 	GameObject startSign;
 
+	public Sprite timHappy;
+	public Sprite timScared;
+	public Sprite timAngry;
+
 	public GameObject leftLeg;
 	public GameObject rightLeg;
 	public GameObject leftArm;
@@ -314,6 +318,7 @@ public class Tim : MonoBehaviour {
 	public void TimTalk(){
 
 		if(mood == 0 && scroller1Script.running == true){
+			gameObject.GetComponent<SpriteRenderer> ().sprite = timAngry;
 			dialoger = "Wow, this place is really beautiful. \n I think I’ll stay here all day.";
 			scroller1Script.speed = 0f;
 			scroller2Script.speed = 0f;
@@ -323,6 +328,7 @@ public class Tim : MonoBehaviour {
 				animScared.Play("animCalm");
 			}
 		} else if(mood == 0){
+			gameObject.GetComponent<SpriteRenderer> ().sprite = timHappy;
 			dialoger = TimDialogHappy [0].ToString ();
 			calm.Play ();
 			if(!animScared.isPlaying){
@@ -330,6 +336,7 @@ public class Tim : MonoBehaviour {
 			}
 		}
 		if(mood <= 3 && mood >0){
+			gameObject.GetComponent<SpriteRenderer> ().sprite = timHappy;
 			dialoger = TimDialogHappy [0].ToString ();
 			scroller1Script.speed = 0.2f;
 			scroller2Script.speed = 0.5f;
@@ -342,6 +349,7 @@ public class Tim : MonoBehaviour {
 		}
 
 		if(mood >= 4 && mood <= 7){
+			gameObject.GetComponent<SpriteRenderer> ().sprite = timScared;
 			dialoger = TimDialogScared [0].ToString ();
 			scroller1Script.speed = 0.2f;
 			scroller2Script.speed = 0.5f;
@@ -354,6 +362,7 @@ public class Tim : MonoBehaviour {
 		}
 
 		if(mood >= 8 && mood < 10){
+			gameObject.GetComponent<SpriteRenderer> ().sprite = timAngry;
 			dialoger = TimDialogAngry [0].ToString ();
 			scroller1Script.speed = 0.2f;
 			scroller2Script.speed = 0.5f;
@@ -365,6 +374,7 @@ public class Tim : MonoBehaviour {
 			}
 		}
 		if (mood == 10 && scroller1Script.running == true) {
+			gameObject.GetComponent<SpriteRenderer> ().sprite = timAngry;
 			dialoger = "Stop yelling at me! \n I won’t go any further \n until you stop yelling!";
 			scroller1Script.speed = 0f;
 			scroller2Script.speed = 0f;
@@ -374,6 +384,7 @@ public class Tim : MonoBehaviour {
 				animScared.Play ("animAngry");
 			}
 		} else if(mood == 10){
+			gameObject.GetComponent<SpriteRenderer> ().sprite = timAngry;
 			dialoger = TimDialogAngry [0].ToString ();
 			angry.Play ();
 			if (!animScared.isPlaying) {
@@ -411,6 +422,7 @@ public class Tim : MonoBehaviour {
 			}
 		}
 		TimTalk ();
+		//DELAY UNTIL YOU CAN SPEAK AGAIN
 		StartCoroutine (timeToSpeak(4f));
 		whisper = false;
 
@@ -1020,7 +1032,7 @@ public class Tim : MonoBehaviour {
 			//startbox.SetActive (false);
 			animStartSign.Play ("endSign");
 			started = true;
-			gameState = "Berries";
+			gameState = "Dragon1";
 
 		}
 	}

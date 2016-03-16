@@ -46,6 +46,8 @@ public class Blomma : MonoBehaviour {
 		if(state == "Flower1"){
 			if(timScript.mood < 5){
 				print ("Tim går djupare in i skogen, och stöter på skogens farliga drak-orm. ");
+				timScript.animScared.Play ("shrubbery");
+				timScript.inventory.Add ("Flower");
 				StartCoroutine (waitForAnim(animationTime));
 				noActionTaken = false;
 				timScript.gameState = "Dragon1";
@@ -53,6 +55,8 @@ public class Blomma : MonoBehaviour {
 
 			if (timScript.mood >= 5) {
 				print ("Tim går djupare in i skogen, och stöter på skogens farliga drak-orm.");
+				timScript.animScared.Play ("shrubbery");
+				timScript.inventory.Add ("Flower");
 				StartCoroutine (waitForAnim(animationTime));
 				noActionTaken = false;
 				timScript.gameState = "Dragon1";
@@ -62,6 +66,8 @@ public class Blomma : MonoBehaviour {
 		if(state == "Flower2"){
 			if(timScript.mood < 5){
 				print ("Tim går djupare in i skogen, och stöter på skogens farliga drak-orm. ");
+				timScript.animScared.Play ("shrubbery");
+				timScript.inventory.Add ("Flower");
 				StartCoroutine (waitForAnim(animationTime));
 				//timScript.inventory.Add ("berries");
 				noActionTaken = false;
@@ -70,6 +76,8 @@ public class Blomma : MonoBehaviour {
 
 			if (timScript.mood >= 5) {
 				print ("Tim går djupare in i skogen, och stöter på skogens farliga drak-orm. ");
+				timScript.animScared.Play ("shrubbery");
+				timScript.inventory.Add ("Flower");
 				StartCoroutine (waitForAnim(animationTime));
 				noActionTaken = false;
 				timScript.gameState = "Dragon3";

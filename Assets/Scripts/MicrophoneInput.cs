@@ -31,14 +31,14 @@ public class MicrophoneInput : MonoBehaviour {
 				StartCoroutine (WhisperDelay(0.3f));
 //				timscript.Whisper (true);
 				talkDelayer = false;
-				StartCoroutine (talkDelay(5f));
+				StartCoroutine (talkDelay(4f));
 			}
 
 			if (loudness > 5) {
 				StartCoroutine (YellDelay(0.3f));
 				//timscript.Yell (true);
 				talkDelayer = false;
-				StartCoroutine (talkDelay(5f));
+				StartCoroutine (talkDelay(4f));
 			}
 		}
 		}
