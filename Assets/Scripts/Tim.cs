@@ -336,7 +336,7 @@ public class Tim : MonoBehaviour {
 	public void TimTalk(){
 
 		if(mood == 0 && scroller1Script.running == true){
-			gameObject.GetComponent<SpriteRenderer> ().sprite = timAngry;
+			gameObject.GetComponent<SpriteRenderer> ().sprite = timHappy;
 			dialoger = "Wow, this place is really beautiful. \n I think I’ll stay here all day.";
 			scroller1Script.speed = 0f;
 			scroller2Script.speed = 0f;
@@ -1051,7 +1051,7 @@ public class Tim : MonoBehaviour {
 			//startbox.SetActive (false);
 			animStartSign.Play ("endSign");
 			started = true;
-			gameState = "Raven1";
+			gameState = "Stick1";
 
 		}
 	}

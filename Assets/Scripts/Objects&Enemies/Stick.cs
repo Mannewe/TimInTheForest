@@ -9,6 +9,7 @@ public class Stick : MonoBehaviour {
 	GameObject scroller1;
 	GameObject scroller2;
 	GameObject tim;
+	bool switchGameState = false;
 	Tim timScript;
 	bool noActionTaken = true;
 
@@ -111,4 +112,6 @@ public class Stick : MonoBehaviour {
 			Act ();
 		}
 	}
+		
+		
 }

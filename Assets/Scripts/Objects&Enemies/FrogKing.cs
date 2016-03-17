@@ -181,7 +181,9 @@ public class FrogKing : MonoBehaviour {
 	IEnumerator waitForAnim(float waitTime){
 		yield return new WaitForSeconds (waitTime);
 		print ("Animation Done");
+		if(timScript.gameState == "Flower1"){
 		timScript.bunnyFollower.SetActive (false);
+		}
 		if(timScript.animSword.activeSelf == true){
 			timScript.animSword.SetActive (false);
 		}

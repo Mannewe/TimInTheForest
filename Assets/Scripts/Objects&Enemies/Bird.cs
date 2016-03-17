@@ -8,6 +8,7 @@ public class Bird : MonoBehaviour {
 	GameObject scroller1;
 	GameObject scroller2;
 	GameObject tim;
+	public Sprite ravenFly;
 	string ravenDialog = "";
 	string speak;
 	Tim timScript;
@@ -88,7 +89,6 @@ public class Bird : MonoBehaviour {
 					ravenDialog = "If you are a frog, beware \n of the hungry Dragonsnake.";
 					StartCoroutine (waitForAnim (animationTime));
 					timScript.animWings.SetActive (true);
-					spawn.Play ("birdFlyAwayAnim");
 					noActionTaken = false;
 					timScript.inventory.Remove ("Stone2");
 					timScript.gameState = "Sword3";
@@ -137,6 +137,7 @@ public class Bird : MonoBehaviour {
 	IEnumerator waitForFly(float waitTime){
 		yield return new WaitForSeconds (waitTime);
 		timScript.animWings.SetActive (true);
+		gameObject.GetComponent<SpriteRenderer> ().sprite = ravenFly;
 		spawn.Play ("birdFlyAwayAnim");
 	}
 		
