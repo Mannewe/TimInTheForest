@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/death3.unity
+- path: Assets/Scenes/Untitled.unity
   isLoaded: 1
   isActive: 1
