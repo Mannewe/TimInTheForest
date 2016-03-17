@@ -1051,7 +1051,7 @@ public class Tim : MonoBehaviour {
 			//startbox.SetActive (false);
 			animStartSign.Play ("endSign");
 			started = true;
-			gameState = "Stick1";
+			gameState = "Berries";
 
 		}
 	}
