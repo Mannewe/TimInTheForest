@@ -34,6 +34,8 @@ public class Tim : MonoBehaviour {
 	public Animation throwBadMushroom;
 	public Animation throwGoodMushroom;
 	public Animation bunnyAnim;
+	public Animation wings;
+	public Animation birdFly;
 
 	//Dialog lists
 	public ArrayList TimDialogHappy;
@@ -54,6 +56,8 @@ public class Tim : MonoBehaviour {
 	GameObject startbox;
 	public GameObject pratbubblaAndra;
 	public GameObject pratbubblaAndra2;
+	public GameObject animBird;
+	public GameObject animWings;
 
 	//animationObjects
 	public GameObject animSword;
@@ -124,6 +128,10 @@ public class Tim : MonoBehaviour {
 		animDeadRabbit = GameObject.FindWithTag ("animDeadRabbit");
 		animFlugsvamp = GameObject.FindWithTag ("animFlugsvamp");
 		animKantarell = GameObject.FindWithTag ("animKantarell");
+		animWings = GameObject.FindWithTag ("animWings");
+
+		wings = animWings.GetComponent<Animation> ();
+
 		throwBadMushroom = animFlugsvamp.GetComponent<Animation> ();
 		throwGoodMushroom = animKantarell.GetComponent<Animation> ();
 		rockThrow = animRock.GetComponent<Animation> ();
@@ -175,6 +183,7 @@ public class Tim : MonoBehaviour {
 		Flower.SetActive (false);
 		pratbubblaAndra.SetActive (false);
 		pratbubblaAndra2.SetActive (false);
+		animWings.SetActive (false);
 
 		animSword.SetActive (false);
 		animStick.SetActive (false);
@@ -229,6 +238,7 @@ public class Tim : MonoBehaviour {
 			if(animScared.IsPlaying("Killstuff")){
 				rightArmAnim.Play ("AngryArmRight");
 			}
+				
 
 //		if(Input.GetKeyDown("w")){
 //			Whisper (true);
@@ -659,7 +669,7 @@ public class Tim : MonoBehaviour {
 			//happy
 		if (scroller1Script.running == true) {
 				TimDialogHappy.Add("What should I eat for dinner?");
-				TimDialogScared.Add ("I need weapons if case \n something will try to kill me");
+				TimDialogScared.Add ("I need weapons in case \n something will try to kill me");
 				TimDialogAngry.Add("I feel like smashing something.");
 		}
 		}
@@ -1032,7 +1042,7 @@ public class Tim : MonoBehaviour {
 			//startbox.SetActive (false);
 			animStartSign.Play ("endSign");
 			started = true;
-			gameState = "Dragon1";
+			gameState = "Frog4";
 
 		}
 	}
@@ -1043,5 +1053,4 @@ public class Tim : MonoBehaviour {
 		speak = false;
 	}
 		
-
 }
