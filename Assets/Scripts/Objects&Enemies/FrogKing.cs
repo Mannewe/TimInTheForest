@@ -131,6 +131,7 @@ public class FrogKing : MonoBehaviour {
 					frogDialog = "Worth… it…";
 					print ("Tim ger grodan den giftiga svampen. Grodan dör och tappar sitt svärd, som Tim plockar upp.");
 					timScript.throwBadMushroom.Play ("berryThrow");
+					StartCoroutine (waitForKilled(2f));
 					StartCoroutine (waitForAnim (animationTime));
 					timScript.inventory.Remove ("MushroomBad");
 					noActionTaken = false;
@@ -154,6 +155,7 @@ public class FrogKing : MonoBehaviour {
 					frogDialog = "Fiona, forgive me…";
 					print ("Tim dräper grodan med sitt svärd. Tim tar grodans ledbrutna kropp och lägger den i sin ryggsäck.");
 					timScript.animSword.SetActive (true);
+					StartCoroutine (waitForKilled(2f));
 					StartCoroutine (waitForAnim (animationTime));
 					timScript.animScared.Play ("Killstuff");
 					//timScript.inventory.Remove ("Sword");
@@ -206,9 +208,15 @@ public class FrogKing : MonoBehaviour {
 		timScript.pratbubblaAndra2.SetActive (true);
 		speak = frogDialog;
 	}
+
+	IEnumerator waitForKilled(float waitTime){
+		yield return new WaitForSeconds (waitTime);
+		spawn.Play ("FrogDeathAnim");
+	}
 		
 
 	void OnGUI(){
-		GUI.Label(new Rect(700,60,200,190), speak , timScript.style);                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
+		//GUI.Label(new Rect(700,60,200,190), speak , timScript.style);
+		GUI.Label(new Rect(Screen.width/1.9f,Screen.height*0.07f,200,190), speak , timScript.style);
 	}
 }

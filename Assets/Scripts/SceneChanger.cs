@@ -15,28 +15,28 @@ public class SceneChanger : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if(timScript.gameState == "Death1"){
-			StartCoroutine (waitForScene (8));
+			StartCoroutine (waitForScene (3.5f));
 			if(changeScene == true){
 				SceneManager.LoadScene ("death1");
 			}
 		}
 
 		if(timScript.gameState == "Death2"){
-			StartCoroutine (waitForScene (8));
+			StartCoroutine (waitForScene (3.5f));
 			if(changeScene == true){
 				SceneManager.LoadScene ("death2");
 			}
 		}
 
 		if(timScript.gameState == "Death3"){
-			StartCoroutine (waitForScene (8));
+			StartCoroutine (waitForScene (3.5f));
 			if(changeScene == true){
 				SceneManager.LoadScene ("death3");
 			}
 		}
 
 		if(timScript.gameState == "Death4"){
-			StartCoroutine (waitForScene (8));
+			StartCoroutine (waitForScene (3.5f));
 			if(changeScene == true){
 				SceneManager.LoadScene ("death4");
 			}
@@ -71,7 +71,7 @@ public class SceneChanger : MonoBehaviour {
 		}
 
 		if(timScript.gameState == "Slave1"){
-			StartCoroutine (waitForScene (8));
+			StartCoroutine (waitForScene (3.5f));
 			if(changeScene == true){
 				SceneManager.LoadScene ("slave1");
 			}
@@ -99,14 +99,14 @@ public class SceneChanger : MonoBehaviour {
 		}
 
 		if(timScript.gameState == "OutOfTheForest2"){
-			StartCoroutine (waitForScene (8));
+			StartCoroutine (waitForScene (3.5f));
 			if(changeScene == true){
 				SceneManager.LoadScene ("outoftheforest2");
 			}
 		}
 
 		if(timScript.gameState == "King1"){
-			StartCoroutine (waitForScene (8));
+			StartCoroutine (waitForScene (4f));
 			if(changeScene == true){
 				SceneManager.LoadScene ("King1");
 			}

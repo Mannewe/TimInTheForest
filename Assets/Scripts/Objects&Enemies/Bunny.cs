@@ -11,6 +11,7 @@ public class Bunny : MonoBehaviour {
 	GameObject berries;
 	Animation toss;
 	Tim timScript;
+	bool killBunny = false;
 	public Animation bunnyAnims;
 	bool noActionTaken = true;
 
@@ -82,6 +83,7 @@ public class Bunny : MonoBehaviour {
 				if (timScript.mood >= 5) {
 					print ("Tim kastar en av sina stenar på kaninen, som dör. Tim plockar upp den döda kaninen och lägger den i sin ryggsäck.");
 					timScript.rockThrow.Play ("berryThrow");
+					StartCoroutine (waitForStoneKill(2f));
 					StartCoroutine (waitForAnim (animationTime));
 					timScript.inventory.Add ("Bunny");
 					timScript.inventory.Remove ("Stone1");
@@ -115,6 +117,11 @@ public class Bunny : MonoBehaviour {
 	IEnumerator waitForBunny(float waitTime){
 		yield return new WaitForSeconds (waitTime);
 		timScript.bunnyFollower.SetActive (true);
+	}
+
+	IEnumerator waitForStoneKill(float waitTime){
+		yield return new WaitForSeconds (waitTime);
+		bunnyAnims.Play ("animDeadBunny");
 	}
 
 	IEnumerator waitForAction(float waitTime){
