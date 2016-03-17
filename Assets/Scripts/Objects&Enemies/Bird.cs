@@ -92,7 +92,6 @@ public class Bird : MonoBehaviour {
 					timScript.rockThrow.Play ("berryThrow");
 					ravenDialog = "If you are a frog, beware \n of the hungry Dragonsnake.";
 					StartCoroutine (waitForAnim (animationTime));
-					timScript.animWings.SetActive (true);
 					noActionTaken = false;
 					timScript.inventory.Remove ("Stone2");
 					timScript.gameState = "Sword3";
@@ -146,7 +145,7 @@ public class Bird : MonoBehaviour {
 		
 	void OnGUI(){
 		//GUI.Label(new Rect(790,240,200,190), speak , timScript.style);
-		GUI.Label(new Rect(Screen.width/1.7f,Screen.height/3.4f,200,190), speak , timScript.style);
+		GUI.Label(new Rect(Screen.width/1.7f,Screen.height/3.1f,200,190), speak , timScript.style);
 	}
 
 }

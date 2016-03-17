@@ -519,7 +519,7 @@ public class Tim : MonoBehaviour {
 	void OnGUI(){
 		if(speak == true){
 			//GUI.Label(new Rect(300,200,200,190), dialoger , style);
-			GUI.Label(new Rect(Screen.width/4.5f,Screen.height/4f,200,190), dialoger , style);
+			GUI.Label(new Rect(Screen.width/4.5f,Screen.height/3.8f,200,190), dialoger , style);
 		}
 //		if(gameState == "Start"){
 //			GUI.Box (new Rect(Screen.width/2 - 450,100,200,200), startText, style2);
@@ -1051,7 +1051,7 @@ public class Tim : MonoBehaviour {
 			//startbox.SetActive (false);
 			animStartSign.Play ("endSign");
 			started = true;
-			gameState = "Raven2";
+			gameState = "Berries";
 
 		}
 	}

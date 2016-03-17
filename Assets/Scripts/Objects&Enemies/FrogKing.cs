@@ -70,7 +70,7 @@ public class FrogKing : MonoBehaviour {
 				if (timScript.mood >= 5) {
 					StartCoroutine (waitForBubble(4.0f));
 					print ("Tim slår grodan med sin pinne. Grodan flyr från Tims vrede, och tappar sitt svärd.");
-					frogDialog = "Ah, stop! Don’t hurt me! Get away from me!";
+					frogDialog = "Ah, stop! Don’t hurt me!\n Get away from me!";
 					timScript.animStick.SetActive (true);
 					StartCoroutine (waitForAnim (animationTime));
 					timScript.animScared.Play ("Killstuff");
@@ -93,7 +93,7 @@ public class FrogKing : MonoBehaviour {
 
 				if (timScript.mood >= 5) {
 					StartCoroutine (waitForBubble(4.0f));
-					frogDialog = "So you wanna fight, huh? I’ll show you!";
+					frogDialog = "So you wanna fight, \n huh? I’ll show you!";
 					print ("Tim brottas med grodan, men förlorar. Grodan tar Tim till sin personliga slav.");
 					timScript.animScared.Play ("Killstuff");
 					StartCoroutine (waitForAnim (animationTime));
@@ -228,6 +228,6 @@ public class FrogKing : MonoBehaviour {
 
 	void OnGUI(){
 		//GUI.Label(new Rect(700,60,200,190), speak , timScript.style);
-		GUI.Label(new Rect(Screen.width/1.9f,Screen.height*0.07f,200,190), speak , timScript.style);
+		GUI.Label(new Rect(Screen.width/1.9f,Screen.height*0.1f,200,190), speak , timScript.style);
 	}
 }
