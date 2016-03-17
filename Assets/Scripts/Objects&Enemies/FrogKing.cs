@@ -57,6 +57,7 @@ public class FrogKing : MonoBehaviour {
 		if (timScript.moodChanged == true) {
 			if (state == "Frog1") {
 				if (timScript.mood < 5) {
+					StartCoroutine (waitForBubble(4.0f));
 					print ("Tim erbjuder grodan att få kaninen som kompis. Grodan blir överlycklig och ger Tim en blomma som tack.");
 					frogDialog = "Take this flower as a \n token of our friendship";
 					timScript.bunnyAnim.Play ("giveLivingRabbit");
@@ -67,6 +68,7 @@ public class FrogKing : MonoBehaviour {
 				}
 
 				if (timScript.mood >= 5) {
+					StartCoroutine (waitForBubble(4.0f));
 					print ("Tim slår grodan med sin pinne. Grodan flyr från Tims vrede, och tappar sitt svärd.");
 					frogDialog = "Ah, stop! Don’t hurt me! Get away from me!";
 					timScript.animStick.SetActive (true);
@@ -80,6 +82,7 @@ public class FrogKing : MonoBehaviour {
 
 			if (state == "Frog2") {
 				if (timScript.mood < 5) {
+					StartCoroutine (waitForBubble(4.0f));
 					frogDialog = "Finally a friend, thank you stranger! \n Take this flower as a token of our friendship";
 					print ("Tim erbjuder grodan att få kaninen som kompis. Grodan blir överlycklig och ger Tim en blomma som tack.");
 					StartCoroutine (waitForAnim (animationTime));
@@ -89,6 +92,7 @@ public class FrogKing : MonoBehaviour {
 				}
 
 				if (timScript.mood >= 5) {
+					StartCoroutine (waitForBubble(4.0f));
 					frogDialog = "So you wanna fight, huh? I’ll show you!";
 					print ("Tim brottas med grodan, men förlorar. Grodan tar Tim till sin personliga slav.");
 					timScript.animScared.Play ("Killstuff");
@@ -100,6 +104,7 @@ public class FrogKing : MonoBehaviour {
 
 			if (state == "Frog3") {
 				if (timScript.mood < 5) {
+					StartCoroutine (waitForBubble(4.0f));
 					frogDialog = "You’re my slave now. S for sockdrying,\n L for laundry, A for assmassage,\n V for victim, E for eat my shit";
 					print ("Då Tim inte har någonting att ge grodan, gör grodan Tim till sin personliga slav. ");
 					StartCoroutine (waitForAnim (animationTime));
@@ -108,6 +113,7 @@ public class FrogKing : MonoBehaviour {
 				}
 
 				if (timScript.mood >= 5) {
+					StartCoroutine (waitForBubble(4.0f));
 					frogDialog = "How convenient, my last slave just died. \n You’ll be a worthy replacement";
 					print ("Då Tim inte har någonting att ge grodan, gör grodan Tim till sin personliga slav.");
 					StartCoroutine (waitForAnim (animationTime));
@@ -118,6 +124,7 @@ public class FrogKing : MonoBehaviour {
 
 			if (state == "Frog4") {
 				if (timScript.mood < 5) {
+					StartCoroutine (waitForBubble(4.0f));
 					frogDialog = "Such a lovely mushroom, you’ll \n be my personal mushroom picker!";
 					print ("Tim ger grodan den fina svampen. Grodan uppskattar detta så mycket att han tar Tim till sin personliga slav. ");
 					timScript.throwGoodMushroom.Play ("berryThrow");
@@ -128,6 +135,7 @@ public class FrogKing : MonoBehaviour {
 				}
 
 				if (timScript.mood >= 5) {
+					StartCoroutine (waitForBubble(4.0f));
 					frogDialog = "Worth… it…";
 					print ("Tim ger grodan den giftiga svampen. Grodan dör och tappar sitt svärd, som Tim plockar upp.");
 					timScript.throwBadMushroom.Play ("berryThrow");
@@ -141,6 +149,7 @@ public class FrogKing : MonoBehaviour {
 
 			if (state == "Frog5") {
 				if (timScript.mood < 5) {
+					StartCoroutine (waitForBubble(4.0f));
 					frogDialog = "How nice to finally get some company! \n I’ll show you the way out of the forest.";
 					print ("Tim ger grodan den döda kaninen. Grodan uppskattar gåvan, och de två blir kompisar. Grodan visar Tim vägen ut ur skogen. ");
 					timScript.throwDeadRabbit.Play ("berryThrow");
@@ -152,6 +161,7 @@ public class FrogKing : MonoBehaviour {
 
 				if (timScript.mood >= 5) {
 					//swordPos = -1f;
+					StartCoroutine (waitForBubble(4.0f));
 					frogDialog = "Fiona, forgive me…";
 					print ("Tim dräper grodan med sitt svärd. Tim tar grodans ledbrutna kropp och lägger den i sin ryggsäck.");
 					timScript.animSword.SetActive (true);
@@ -201,7 +211,6 @@ public class FrogKing : MonoBehaviour {
 		yield return new WaitForSeconds (waitTime);
 		if(noActionTaken == true){
 			Act ();
-			StartCoroutine (waitForBubble(4.0f));
 		}
 	}
 

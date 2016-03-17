@@ -51,6 +51,7 @@ public class Bird : MonoBehaviour {
 		if (timScript.moodChanged == true) {
 			if (state == "Raven1") {
 				if (timScript.mood < 5) {
+					StartCoroutine (waitForBubble(4.0f));
 					StartCoroutine (waitForFly (6f));
 					print ("Tim och kaninen möter en korp. Korpen säger: -Skogens kung är ensam. Korpen flyger iväg");
 					ravenDialog = "The King of the forest is lonely.";
@@ -61,6 +62,7 @@ public class Bird : MonoBehaviour {
 				}
 
 				if (timScript.mood >= 5) {
+					StartCoroutine (waitForBubble(4.0f));
 					StartCoroutine (waitForFly (6f));
 					print ("Tim och kaninen möter en korp. Korpen säger: -Skogens kung är ensam. Korpen flyger iväg");
 					ravenDialog = "The King of the forest is \n in need of a friend.";
@@ -72,6 +74,7 @@ public class Bird : MonoBehaviour {
 
 			if (state == "Raven2") {
 				if (timScript.mood < 5) {
+					StartCoroutine (waitForBubble(4.0f));
 					StartCoroutine (waitForFly (6f));
 					print ("Tim möter en korp. Korpen säger: - Ormen älskar att äta grodlår. Tim kastar sin sista sten på korpen, som flyger iväg. I sin brådska tappar korpen sitt svärd på marken. Tim plockar upp svärdet.");
 					ravenDialog = "Snakes loves to eat frogs’ legs.";
@@ -83,6 +86,7 @@ public class Bird : MonoBehaviour {
 				}
 
 				if (timScript.mood >= 5) {
+					StartCoroutine (waitForBubble(4.0f));
 					StartCoroutine (waitForFly (6f));
 					print ("Tim möter en korp. Korpen säger: - Ormen älskar att äta grodlår. Tim kastar sin sista sten på korpen, som flyger iväg. I sin brådska tappar korpen sitt svärd på marken. Tim plockar upp svärdet.");
 					timScript.rockThrow.Play ("berryThrow");
@@ -124,7 +128,6 @@ public class Bird : MonoBehaviour {
 		yield return new WaitForSeconds (waitTime);
 		if(noActionTaken == true){
 			Act ();
-			StartCoroutine (waitForBubble(4.0f));
 		}
 	}
 
