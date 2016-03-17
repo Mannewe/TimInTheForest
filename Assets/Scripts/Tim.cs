@@ -36,6 +36,8 @@ public class Tim : MonoBehaviour {
 	public Animation bunnyAnim;
 	public Animation wings;
 	public Animation birdFly;
+	public Animation deadFrog;
+	public Animation throwFlower;
 
 	//Dialog lists
 	public ArrayList TimDialogHappy;
@@ -67,6 +69,8 @@ public class Tim : MonoBehaviour {
 	public GameObject animDeadRabbit;
 	public GameObject animKantarell;
 	public GameObject animFlugsvamp;
+	public GameObject animDeadFrog;
+	public GameObject animFlower;
 
 	//Background
 	GameObject scroller1;
@@ -121,7 +125,11 @@ public class Tim : MonoBehaviour {
 		style.fontSize = 20;
 		style2.fontSize = 40;
 
+		animFlower = GameObject.FindWithTag ("animFlower");
+		animDeadFrog = GameObject.FindWithTag ("animDeadFrog");
 		animScared = gameObject.GetComponent<Animation> ();
+		deadFrog = animDeadFrog.GetComponent < Animation> ();
+		throwFlower = animFlower.GetComponent<Animation> ();
 		animRock = GameObject.FindWithTag ("animRock");
 		animSword = GameObject.FindWithTag ("animSword");
 		animStick = GameObject.FindWithTag ("animStick");
@@ -510,7 +518,8 @@ public class Tim : MonoBehaviour {
 
 	void OnGUI(){
 		if(speak == true){
-			GUI.Label(new Rect(300,200,200,190), dialoger , style);
+			//GUI.Label(new Rect(300,200,200,190), dialoger , style);
+			GUI.Label(new Rect(Screen.width/4.5f,Screen.height/4f,200,190), dialoger , style);
 		}
 //		if(gameState == "Start"){
 //			GUI.Box (new Rect(Screen.width/2 - 450,100,200,200), startText, style2);
@@ -1042,7 +1051,7 @@ public class Tim : MonoBehaviour {
 			//startbox.SetActive (false);
 			animStartSign.Play ("endSign");
 			started = true;
-			gameState = "Frog4";
+			gameState = "Raven1";
 
 		}
 	}

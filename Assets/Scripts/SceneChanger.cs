@@ -99,14 +99,14 @@ public class SceneChanger : MonoBehaviour {
 		}
 
 		if(timScript.gameState == "OutOfTheForest2"){
-			StartCoroutine (waitForScene (8));
+			StartCoroutine (waitForScene (3.5f));
 			if(changeScene == true){
 				SceneManager.LoadScene ("outoftheforest2");
 			}
 		}
 
 		if(timScript.gameState == "King1"){
-			StartCoroutine (waitForScene (8));
+			StartCoroutine (waitForScene (4f));
 			if(changeScene == true){
 				SceneManager.LoadScene ("King1");
 			}

@@ -46,6 +46,7 @@ public class Snake : MonoBehaviour {
 		if (timScript.moodChanged == true) {
 			if (state == "Dragon1") {
 				if (timScript.mood < 5) {
+					timScript.throwFlower.Play ("berryThrow");
 					print ("Tim ger sin blomma till ormen, som blir glad över Tims omtanke och de två blir kompisar. Fred råder i skogen, och alla lever lyckliga. ");
 					StartCoroutine (waitForAnim (animationTime));
 					timScript.inventory.Remove ("Flower");
@@ -85,6 +86,7 @@ public class Snake : MonoBehaviour {
 
 			if (state == "Dragon3") {
 				if (timScript.mood < 5) {
+					timScript.throwFlower.Play ("berryThrow");
 					print ("Tim ger sin blomma till ormen, som blir glad över Tims omtanke och de två blir kompisar. Fred råder i skogen, och alla lever lyckliga. ");
 					StartCoroutine (waitForAnim (animationTime));
 					timScript.inventory.Remove ("Flower");
@@ -121,6 +123,7 @@ public class Snake : MonoBehaviour {
 
 			if (state == "Dragon5") {
 				if (timScript.mood < 5) {
+					timScript.deadFrog.Play ("berryThrow");
 					print ("Tim ger den döda grodans kropp till drakormen. Drakormen äter upp grodan med stor aptit. Tim och drakormen blir kompisar, och ormen visar Tim vägen ut ur skogen.");
 					StartCoroutine (waitForAnim (animationTime));
 					timScript.inventory.Remove ("FrogDead");

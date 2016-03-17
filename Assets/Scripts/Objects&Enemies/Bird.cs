@@ -141,7 +141,8 @@ public class Bird : MonoBehaviour {
 	}
 		
 	void OnGUI(){
-		GUI.Label(new Rect(790,240,200,190), speak , timScript.style);
+		//GUI.Label(new Rect(790,240,200,190), speak , timScript.style);
+		GUI.Label(new Rect(Screen.width/1.7f,Screen.height/3.4f,200,190), speak , timScript.style);
 	}
 
 }
